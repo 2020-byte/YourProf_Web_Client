@@ -8,6 +8,7 @@ import {Link, useNavigate} from 'react-router-dom';
 import { BsSearch } from 'react-icons/bs';
 import styles from './Header.module.css';
 import DropdownItem from '../DropdownItem/DropdownItem';
+import { useEffect } from 'react';
 
 const Header = (props) => {
 
@@ -19,6 +20,13 @@ const Header = (props) => {
         e.preventDefault();
         navigate(`/search?prof=${searchRef.current.value}`)
     };
+
+
+    const location = window.location.pathname
+    useEffect(() => {
+        if(!location.includes('/search')) searchRef.current.value = "";
+        //!이걸로 반대로 해야되는 데 반대로 안해서 잠깐 헷갈림.
+    }, [location])
 
     return (
         <Navbar className={styles.navbar} expand="xl">

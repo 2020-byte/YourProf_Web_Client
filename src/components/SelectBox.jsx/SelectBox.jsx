@@ -3,17 +3,14 @@ import { useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import styles from './SelectBox.module.css';
 
-const SelectBox = ({name, id, items, handleSelect}) => {
+const SelectBox = ({name, id, items, handleSelect, selectedValue}) => {
 
-    const [dep, setDep] = useState("any");
 
+    console.log(selectedValue);
     const onChange = (e) => {
-        setDep(e.target.value);
+        handleSelect(e.target.value);
     };
 
-    useEffect(() => {
-        handleSelect(dep);
-    }, [dep])
     
 
     return (
@@ -26,6 +23,7 @@ const SelectBox = ({name, id, items, handleSelect}) => {
             aria-label="Default select example"
             className="my-3 d-inline w-50"
             size="lg"
+            value={selectedValue? selectedValue: 'defaultValue'}
             >
                 <option value="defaultValue"  style={{display: 'none'}}> --Please choose an department-- </option>
                 <option value="any">Any</option>
