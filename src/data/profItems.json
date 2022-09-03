@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "name": "Stefen Hui",
+        "ratings": 68,
+        "quality": 2.7,
+        "department": "Mathmatics",
+        "WTA": "0%",
+        "LOD": 3.9
+    },
+    {
+        "id": 2,
+        "name": "Joseph Hui",
+        "ratings": 20,
+        "quality": 3.2,
+        "department": "Engineering",
+        "WTA": "N/A",
+        "LOD": 3
+    },
+    {
+        "id": 3,
+        "name": "Authur Park",
+        "ratings": 35,
+        "quality": 4.6,
+        "department": "Engilish",
+        "WTA": "100%",
+        "LOD": 2.4
+    },
+    {
+        "id": 4,
+        "name": "Josh Emmit",
+        "ratings": 80,
+        "quality": 4.0,
+        "department": "Compute Science",
+        "WTA": "100%",
+        "LOD": 3.1
+    },
+    {
+        "id": 5,
+        "name": "Alexander Volkanovski",
+        "ratings": 0,
+        "quality": -1,
+        "department": "Compute Science",
+        "WTA": "N/A",
+        "LOD": -1
+    }  
+]

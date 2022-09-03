@@ -1,0 +1,96 @@
+.box {
+    /* min-width: 600px; */
+    height: 13rem;
+    display: flex;
+    flex-direction: row;
+    
+    border-radius: 5px;
+    background-color: rgb(247, 247, 247);
+    padding: 2% 3% 2% 3%;
+    font-size: 1.2rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+
+.qualityInfo {
+    flex-basis: 25%;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.05rem;
+    padding-right: 4%;
+    color: rgb(36, 36, 36);
+}
+
+.qualityBox {
+    width: 70%;
+    height:0px;
+    padding-bottom: 70%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+}
+
+.quality {
+    position: absolute;
+    text-align: center;
+    font-weight: 800;
+    text-shadow: 2px 2px whitesmoke;
+    width: 100%;
+    padding-top: 100%;
+    font-size: 3.5rem;
+
+
+}
+
+
+
+
+.info {
+    flex-basis: 70%;
+    justify-content: center;
+    color: rgb(36, 36, 36);
+}
+
+.name {
+    font-size: 2rem;
+    font-weight: 600;
+    color:rgba(0, 0, 0);
+}
+
+
+.bookmark {
+    flex-basis: 5%;
+    font-size: 2rem;
+}
+
+@media only screen and (max-width: 768px) {
+    
+    
+    .verticalLine{
+        display: none;
+    }
+
+
+    .qualityBox {
+        width: 100%;
+        padding-bottom: 100%;
+    }
+
+    .quality {
+        font-size: 3rem;
+    }
+
+    .WTA {
+        display: block;
+    }
+
+    .LOD {
+        display: block;
+    }
+
+    .bookmark {
+        font-size: 1.5rem;
+    }
+}

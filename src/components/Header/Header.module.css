@@ -1,0 +1,22 @@
+.navbar {
+    background-color: beige;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    text-align: center;
+}
+
+.container {
+    height: 4rem;
+}
+
+.brand {
+    color: black;
+    font-size: 1.8rem;
+    text-decoration: none;
+    letter-spacing: 0.15rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .brand {
+        letter-spacing: 0.1rem;
+    }
+}
