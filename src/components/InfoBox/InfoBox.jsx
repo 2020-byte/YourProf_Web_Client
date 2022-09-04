@@ -5,13 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import styles from './InfoBox.module.css';
 import chooseQualityColor from '../../hook/qualityColor';
 
-// const chooseQualityColor = (itemQuality) => {
-//     if(itemQuality < 0) return "lightgrey"
-//     if (itemQuality >= 4) return 'rgb(127, 246, 195)';
-//     if (itemQuality < 4 && itemQuality >= 3) return 'rgb(255, 241, 112)';
-//     return 'rgb(255, 156, 156)';
-// }
-
 const InfoBox = ({item}) => {
 
     //TODO: customHook처리하기
@@ -63,9 +56,6 @@ const InfoBox = ({item}) => {
                     <canvas width="100%"></canvas>
                     {/* canvas width defualt가 300px */}
                 </div>
-            </div>
-            <div>
-
             </div>
         </div>
     )

@@ -1,0 +1,58 @@
+[
+    {
+        "id": "1",
+        "quality": 4.5,
+        "difficulty": 1.0,
+        "courseId": "1",
+        "profId": "1",
+        "rate": 5,
+        "WTCA": true,
+        "TFC": true,
+        "textbook": true,
+        "attendance": true,
+        "GR": "A+",
+        "review": "It was nice."
+    },
+    {
+        "id": "2",
+        "quality": 4.5,
+        "difficulty": 1.0,
+        "courseId": "2",
+        "profId": "1",
+        "rate": 5,
+        "WTCA": true,
+        "TFC": true,
+        "textbook": true,
+        "attendance": true,
+        "GR": "A+",
+        "review": "It was nice."
+    },
+    {
+        "id": "3",
+        "quality": 4.5,
+        "difficulty": 1.0,
+        "courseId": "3",
+        "profId": "1",
+        "rate": 5,
+        "WTCA": true,
+        "TFC": true,
+        "textbook": true,
+        "attendance": true,
+        "GR": "A+",
+        "review": "It was nice."
+    },
+    {
+        "id": "4",
+        "quality": 4.5,
+        "difficulty": 1.0,
+        "courseId": "2",
+        "profId": "2",
+        "rate": 5,
+        "WTCA": true,
+        "TFC": true,
+        "textbook": true,
+        "attendance": true,
+        "GR": "A+",
+        "review": "It was nice."
+    }
+]

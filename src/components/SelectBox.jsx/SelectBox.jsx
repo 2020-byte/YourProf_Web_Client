@@ -14,7 +14,10 @@ const SelectBox = ({name, id, items, handleSelect, selectedValue}) => {
 
     return (
         <div className={styles.body}>
-            <label htmlFor={name} className={styles.label}>Department: </label>
+            <label htmlFor={name} className={styles.label}>
+                {name[0].toUpperCase() + name.slice(1)}: 
+                {/* 모두 소문자로 이루어진 문자열에서 첫번째 문자만 대문자로 */}
+            </label>
             <Form.Select 
             name={name} 
             id={id} 
@@ -24,8 +27,8 @@ const SelectBox = ({name, id, items, handleSelect, selectedValue}) => {
             size="lg"
             value={selectedValue? selectedValue: 'defaultValue'}
             >
-                <option value="defaultValue"  style={{display: 'none'}}> --Please choose an department-- </option>
-                <option value="any">Any</option>
+                <option value="defaultValue"  style={{display: 'none'}}> --Please choose an {name}-- </option>
+                <option value="any">All {name}</option>
                 {items.map(i => (
                     <option
                         key={i.id} 

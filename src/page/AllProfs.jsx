@@ -26,7 +26,6 @@ const AllProfs = (props) => {
     const [searchParams] = useSearchParams();
     const search_word = searchParams.get('prof');
 
-    //const [items, setItem] = useState(profItems);
     const [department, setDepartment] = useState();
     
 
@@ -56,11 +55,11 @@ const AllProfs = (props) => {
             </h1>
             <div>
                 <SelectBox 
-                    name="department" 
-                    id="department-select" 
-                    items={depItems}
-                    handleSelect={handleSelect}
-                    selectedValue={department}
+                name="department" 
+                id="department-select" 
+                items={depItems}
+                handleSelect={handleSelect}
+                selectedValue={department}
                 />
             </div>
             <Stack gap={4}>

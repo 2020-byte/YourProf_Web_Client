@@ -1,0 +1,47 @@
+[
+    {
+        "profId": 1,
+        "id": 1,
+        "name": "MATH 100" 
+    },
+    {
+        "profId": 1,
+        "id": 2,
+        "name": "MATH 101" 
+    },
+    {
+        "profId": 1,
+        "id": 3,
+        "name": "MATH 102" 
+    },
+    {
+        "profId": 2,
+        "id": 4,
+        "name": "ENGI 102" 
+    },
+    {
+        "profId": 2,
+        "id": 5,
+        "name": "ENGI 103" 
+    },
+    {
+        "profId": 2,
+        "id": 6,
+        "name": "ENGI 104" 
+    },
+    {
+        "profId": 3,
+        "id": 7,
+        "name": "ENG 100" 
+    },
+    {
+        "profId": 4,
+        "id": 8,
+        "name": "COSC 100" 
+    },
+    {
+        "profId": 5,
+        "id": 9,
+        "name": "COSC 101" 
+    }
+]
