@@ -6,7 +6,8 @@
         "quality": 2.7,
         "department": "Mathmatics",
         "WTA": "0%",
-        "LOD": 3.9
+        "LOD": 3.9,
+        "university": "The University of British Columbia"
     },
     {
         "id": 2,
@@ -15,7 +16,8 @@
         "quality": 3.2,
         "department": "Engineering",
         "WTA": "N/A",
-        "LOD": 3
+        "LOD": 3,
+        "university": "The University of British Columbia"
     },
     {
         "id": 3,
@@ -24,7 +26,8 @@
         "quality": 4.6,
         "department": "Engilish",
         "WTA": "100%",
-        "LOD": 2.4
+        "LOD": 2.4,
+        "university": "The University of British Columbia"
     },
     {
         "id": 4,
@@ -33,7 +36,8 @@
         "quality": 4.0,
         "department": "Compute Science",
         "WTA": "100%",
-        "LOD": 3.1
+        "LOD": 3.1,
+        "university": "The University of British Columbia"
     },
     {
         "id": 5,
@@ -42,6 +46,7 @@
         "quality": -1,
         "department": "Compute Science",
         "WTA": "N/A",
-        "LOD": -1
+        "LOD": -1,
+        "university": "The University of British Columbia"
     }  
 ]

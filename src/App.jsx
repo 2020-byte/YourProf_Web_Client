@@ -15,8 +15,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/search" element={<AllProfs/>} />
-            <Route path="/search/:profname" element={<Prof/>} />
-            <Route path="/rateProf" element={<RateProf/>} />
+            <Route path="/search/:id" element={<Prof/>} />
+            <Route path="/rateProf/:id" element={<RateProf/>} />
           </Routes>
         </div>
         <div className={styles.widget}>

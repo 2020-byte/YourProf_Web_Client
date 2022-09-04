@@ -1,0 +1,85 @@
+
+.mainInfoBox {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(247, 247, 247);
+    padding: 2%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.qualityInfoBox {
+    flex-basis: 45%;
+    margin-right: 2%;
+    padding: 1%;
+}
+
+.qualityBox {
+    align-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius: 5px;
+    padding:2%;
+    
+}
+
+.quality {
+    text-align: center;
+    font-size: 6rem;
+    font-weight: 900;
+    text-shadow: 2px 2px whitesmoke;
+}
+
+.qualityOutOf {
+    padding-top: 3.4rem;
+    padding-left: 0.7rem;
+    font-weight: 800;
+    color: rgb(150, 150, 150);
+}
+
+.name {
+    font-size: 4rem;
+    font-weight: 900;
+}
+
+.bookmark {
+    padding-top: 2rem;
+    font-size: 4rem;
+    color: grey
+}
+
+.numericInfoBox {
+    display: flex;
+    text-align: center;
+}
+
+.numericInfoItem {
+    border-right: 1px solid grey;
+    height: 70%;
+    padding: 0 2% 0 2%;
+}
+
+.rateButton {
+    width: 100%;
+    height: 2.5rem;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 50px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.canvasBox {
+    flex-basis: 45%;
+    border: 1px solid black;
+}
+
+
+@media only screen and (max-width: 992px) {
+    .qualityInfoBox {
+        flex-basis: 100%;
+        margin-right: 0%;
+        margin-bottom: 2%;
+    }
+
+    .canvasBox {
+        flex-basis: 100%;
+    }
+}

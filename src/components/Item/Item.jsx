@@ -1,23 +1,23 @@
-import React, { useCallback, useState } from 'react';
-import { useMemo } from 'react';
 import {Stack} from 'react-bootstrap';
 import  {FaRegBookmark} from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import styles from './Item.module.css';
-
-const chooseQualityColor = (itemQuality) => {
-    if(itemQuality < 0) return "lightgrey"
-    if (itemQuality >= 4) return 'rgb(127, 246, 195)';
-    if (itemQuality < 4 && itemQuality >= 3) return 'rgb(255, 241, 112)';
-    return 'rgb(255, 156, 156)';
-}
+import chooseQualityColor from '../../hook/qualityColor';
 
 
 const Item = ({item}) => {
 
-    const qualityColor = chooseQualityColor(item.quality)
+    const qualityColor = chooseQualityColor(item.quality);
+
+    const navigate = useNavigate();
+    const handleClick = () => {
+        console.log(item.id);
+        navigate(`/search/${item.id}`)
+    }
+
 
     return (
-        <div className={styles.box}>
+        <div className={styles.box} onClick={handleClick}>
             <Stack className={styles.qualityInfo} >
                 <div style={{fontWeight: 'bolder', color:'rgba(0, 0, 0)'}}>
                     QUALITY

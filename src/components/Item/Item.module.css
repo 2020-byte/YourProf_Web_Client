@@ -1,5 +1,4 @@
 .box {
-    /* min-width: 600px; */
     height: 13rem;
     display: flex;
     flex-direction: row;
@@ -9,6 +8,10 @@
     padding: 2% 3% 2% 3%;
     font-size: 1.2rem;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.box:hover {
+    cursor: pointer;
 }
 
 
@@ -63,6 +66,7 @@
 .bookmark {
     flex-basis: 5%;
     font-size: 2rem;
+    color: grey;
 }
 
 @media only screen and (max-width: 768px) {

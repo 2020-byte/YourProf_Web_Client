@@ -1,7 +1,9 @@
 .body {
-    padding: 5% 10% 5% 10%;
+    margin: 2.5% 7.5% 12.5% 7.5%;
+    padding: 2.5%;
+
     display: flex;
-    margin-bottom: 10%;
+    border: 1px solid black;
 }
 
 .content {

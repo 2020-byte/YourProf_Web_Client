@@ -6,7 +6,6 @@ import styles from './SelectBox.module.css';
 const SelectBox = ({name, id, items, handleSelect, selectedValue}) => {
 
 
-    console.log(selectedValue);
     const onChange = (e) => {
         handleSelect(e.target.value);
     };
