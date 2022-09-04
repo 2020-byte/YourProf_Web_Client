@@ -1,4 +1,5 @@
 import React from 'react';
+import { Stack } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -42,6 +43,9 @@ const Prof = (props) => {
         course === "any" || course === undefined? setFilteredRatings(ratings):
         setFilteredRatings(ratings.filter(i => i.courseId == courses.find(i => i.name === course).id));
         // id == 'id'
+        // 나중에 JOIN으로 데이터베이스에서 바로 갖고 올 수 있도록
+        // 일단 prof으로 필터된 ratings을 가져오고 그걸 courses랑 JOIN하고
+        // course name 갖는 걸 불러오는 것(원래 id로 불러와야 맞는 것 같긴 한데)
     }, [course]);
 
 
@@ -65,11 +69,11 @@ const Prof = (props) => {
                 selectedValue={course}
                 />
             </div>
-            <div>
+            <Stack gap={3}>
                 {filteredRatings.map(i => (
                     <RatingItem key={i.id} item={i}/>
                 ))}
-            </div>
+            </Stack>
         </div>
         
     )

@@ -38,6 +38,8 @@
 .name {
     font-size: 4rem;
     font-weight: 900;
+    word-break: break-word;
+    /* 단어를 기준으로 자르는 것, 부모태그를 넘어갈 때 */
 }
 
 .bookmark {

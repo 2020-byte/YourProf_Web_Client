@@ -10,8 +10,7 @@ const Item = ({item}) => {
     const qualityColor = chooseQualityColor(item.quality);
 
     const navigate = useNavigate();
-    const handleClick = () => {
-        console.log(item.id);
+    const handleClick = () => {;
         navigate(`/search/${item.id}`)
     }
 

@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import styles from './SelectBox.module.css';
 
+
+// TODO: 클릭했을 때 박스 열릴 때 깝빡이는 거 고쳐야함
 const SelectBox = ({name, id, items, handleSelect, selectedValue}) => {
 
 
