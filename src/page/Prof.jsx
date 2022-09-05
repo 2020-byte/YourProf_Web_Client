@@ -70,7 +70,7 @@ const Prof = (props) => {
                 selectedValue={course}
                 />
             </div>
-            <Stack gap={3}>
+            <Stack gap={4}>
                 {filteredRatings.map(item => (
                     <RatingItem key={item.id} item={item} course={profCourseItems.find(i => i.id == item.courseId)}/>
                 ))}

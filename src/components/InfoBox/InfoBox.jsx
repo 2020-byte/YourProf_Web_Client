@@ -1,9 +1,11 @@
 import React from 'react';
 import { Button, Stack } from 'react-bootstrap';
 import  {FaRegBookmark} from 'react-icons/fa';
+import  {FaBookmark} from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import styles from './InfoBox.module.css';
 import chooseQualityColor from '../../hook/qualityColor';
+import useToggle from '../../hook/useToggle';
 
 const InfoBox = ({item}) => {
 
@@ -14,6 +16,8 @@ const InfoBox = ({item}) => {
     const onClick = () => {
         navigate(`/rateProf/${item.id}`)
     }
+
+    const [visible, toggleVisibility] = useToggle(false);
 
     return (
         <div>
@@ -30,7 +34,12 @@ const InfoBox = ({item}) => {
                     <span className="pb-3">Overally Qualiity Based on <span style={{fontWeight:"900"}}>{item.ratings}</span> ratings</span>
                     <div className="d-flex justify-content-between">
                         <span className={styles.name}>{item.name}</span>
-                        <FaRegBookmark className={styles.bookmark}/>
+                        <div onClick={() => toggleVisibility()} className={styles.bookmark} >
+                            {
+                                visible? <FaBookmark style={{color: '#F93E69'}}/>
+                                :<FaRegBookmark/>
+                            }
+                        </div>
                     </div>
                     <div className="pb-3">
                         Professor in the {item.department} at {item.university}

@@ -1,8 +1,10 @@
 import {Stack} from 'react-bootstrap';
 import  {FaRegBookmark} from 'react-icons/fa';
+import  {FaBookmark} from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import styles from './Item.module.css';
 import chooseQualityColor from '../../hook/qualityColor';
+import useToggle from '../../hook/useToggle';
 
 
 const Item = ({item}) => {
@@ -10,10 +12,13 @@ const Item = ({item}) => {
     const qualityColor = chooseQualityColor(item.quality);
 
     const navigate = useNavigate();
-    const handleClick = () => {;
+    const handleClick = (e) => {
+        if(e.target.classList[0] !== 'Item_name__rKYqM') return;
+        //배열 index까지 정확하게 붙여주는 거 까먹지 않기.
         navigate(`/search/${item.id}`)
     }
 
+    const [visible, toggleVisibility] = useToggle(false);
 
     return (
         <div className={styles.box} onClick={handleClick}>
@@ -50,7 +55,14 @@ const Item = ({item}) => {
                     </span>
                 </div>
             </Stack>
-            <FaRegBookmark className={styles.bookmark}/>
+            <div onClick={() => toggleVisibility()} className={styles.bookmark} >
+                {
+                    visible? <FaBookmark style={{color: '#F93E69'}}/>
+                    :<FaRegBookmark/>
+                }
+            </div>
+            
+            
         </div>
     )
 }
