@@ -9,6 +9,7 @@ import profItems from '../data/profItems.json';
 import ratingItems from '../data/ratingItems.json';
 import profCourseItems from '../data/profCourseItems.json';
 import RatingItem from '../components/RantingItem/RatingItem';
+import RatingTabs from '../components/RatingTabs/RatingTabs';
 
 const filterItembyId = (items, Id) => {
     return items.filter(i => i.profId == Id);
@@ -58,7 +59,7 @@ const Prof = (props) => {
         <div>
             <InfoBox item={prof}/>
             <div>
-                <div>7 Student Ratings</div>
+                <RatingTabs numRating={filteredRatings.length} />
             </div>
             <div>
                 <SelectBox 

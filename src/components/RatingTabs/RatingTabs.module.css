@@ -1,0 +1,25 @@
+.ulBox {
+    border-bottom: 2px solid rgb(241, 241, 241);
+    display: flex;
+    margin: 28px 22px 0px 0px;
+    padding: 0px;
+    list-style: none;
+    vertical-align: baseline;
+    text-align: center;
+}
+
+.liBox {
+    border-bottom: 2px solid rgb(21, 21, 21);
+    color: rgb(21, 21, 21);
+    cursor: pointer;
+    font-weight: 700;
+    line-height: 1.8;
+    min-width: 150px;
+    padding-bottom: 8px;
+    
+}
+
+.liBox:hover {
+    border-bottom: 2px solid rgb(152, 152, 152);
+    color: rgb(152, 152, 152);
+}

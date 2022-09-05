@@ -55,6 +55,17 @@
     padding: 2%;
 }
 
+.rateBox {
+    font-weight: 700;
+    width: 100px;
+    text-align: center;
+    text-shadow:
+    -1px -1px 0 white,
+    1px -1px 0 white,
+    -1px 1px 0 white,
+    1px 1px 0 white;  
+}
+
 .reviewText {
     word-break: break-word;
     padding-left: 2%;

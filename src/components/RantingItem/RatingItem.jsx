@@ -10,19 +10,19 @@ const rateNumToText = (rate) => {
     switch ( rate )
     {
         case 1 :    
-        return "Awful"
+        return ["Awful", "#F1C4B8"]
 
         case 2 :     
-        return "Ok"
+        return ["Ok", "#F7C089"]
 
         case  3:    
-        return "Good"
+        return ["Good", "#F7EEA0"]
 
         case 4:    
-        return "Great"
+        return ["Great", "#EBF7A0"]
 
         case 5:    
-        return "Awesome"
+        return ["Awesome", "#A5FE95"]
 
     }
 }
@@ -60,7 +60,7 @@ const RatingItem = ({item, course}) => {
                         {/* 간격 맞춰서 패딩 줘야 하면 <Stack direction="horizontal" gap={3}></Stack> 이거 쓰자. */}
                         <Stack className="ps-2" direction="horizontal" gap={3}>
                             <div style={{fontWeight:'900'}}>{course.name}</div>
-                            <div style={{fontWeight:'600'}}>{rateNumToText(item.rate)}</div>
+                            <div className={styles.rateBox} style={{ backgroundColor: `${rateNumToText(item.rate)[1]}`}}>{rateNumToText(item.rate)[0]}</div>
                         </Stack>
                         <div className={styles.moreInfoBox}>
                             <div className={styles.moreInfoItem}>For Credit: <span style={{fontWeight:'700'}}>Yes</span></div>
