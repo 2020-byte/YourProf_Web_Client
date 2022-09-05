@@ -57,6 +57,7 @@
 
 .reviewText {
     word-break: break-word;
+    padding-left: 2%;
 }
 
 .voteBox {
