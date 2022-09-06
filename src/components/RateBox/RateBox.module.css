@@ -1,0 +1,20 @@
+.body {
+    display: flex;
+    height: 50px;
+    margin: 7%;
+    
+}
+
+.item {
+    border: 1px solid black;
+    width: 85px;
+    margin-right: 1%;
+    padding-left: 1%;
+    color: transparent;
+    /* item들 사이에서 gap줄 때 이렇게 padding이랑 margin 상쇄시키면 전제적으로 중간에 맞네 */
+}
+
+
+.rateTextBox {
+    text-align: center;
+}

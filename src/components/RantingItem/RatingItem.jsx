@@ -9,7 +9,7 @@ import useToggle from '../../hook/useToggle';
 import { useEffect } from 'react';
 
 
-const rateNumToText = (rate) => {
+const findRateInfo = (rate) => {
     switch ( rate )
     {
         case 1 :    
@@ -78,7 +78,7 @@ const RatingItem = ({item, course}) => {
                         {/* 간격 맞춰서 패딩 줘야 하면 <Stack direction="horizontal" gap={3}></Stack> 이거 쓰자. */}
                         <Stack className="ps-2" direction="horizontal" gap={3}>
                             <div style={{fontWeight:'900'}}>{course.name}</div>
-                            <div className={styles.rateBox} style={{ backgroundColor: `${rateNumToText(item.rate)[1]}`}}>{rateNumToText(item.rate)[0]}</div>
+                            <div className={styles.rateBox} style={{ backgroundColor: `${findRateInfo(item.rate)[1]}`}}>{findRateInfo(item.rate)[0]}</div>
                         </Stack>
                         <div className={styles.moreInfoBox}>
                             <div className={styles.moreInfoItem}>For Credit: <span style={{fontWeight:'700'}}>Yes</span></div>

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Item.module.css';
 import chooseQualityColor from '../../hook/qualityColor';
 import useToggle from '../../hook/useToggle';
+import { useRef } from 'react';
 
 
 const Item = ({item}) => {
@@ -13,12 +14,17 @@ const Item = ({item}) => {
 
     const navigate = useNavigate();
     const handleClick = (e) => {
-        if(e.target.classList[0] !== 'Item_name__rKYqM') return;
+        
+        const prevent = e.target.className.baseVal;
+        if(prevent === 'bookmark-off' || prevent === 'bookmark-on' || prevent === '') return
         //배열 index까지 정확하게 붙여주는 거 까먹지 않기.
         navigate(`/search/${item.id}`)
     }
 
     const [visible, toggleVisibility] = useToggle(false);
+
+
+
 
     return (
         <div className={styles.box} onClick={handleClick}>
@@ -55,11 +61,14 @@ const Item = ({item}) => {
                     </span>
                 </div>
             </Stack>
-            <div onClick={() => toggleVisibility()} className={styles.bookmark} >
-                {
-                    visible? <FaBookmark style={{color: '#F93E69'}}/>
-                    :<FaRegBookmark/>
-                }
+            <div  className={styles.bookmark}>
+                <div onClick={() => {toggleVisibility();}} >
+                    {
+                        visible? 
+                        <FaBookmark className="bookmark-on" style={{color: '#F93E69'}} />
+                        :<FaRegBookmark className="bookmark-off" />
+                    }
+                </div>
             </div>
             
             

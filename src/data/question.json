@@ -1,0 +1,51 @@
+[
+    {
+        "id": 1,
+        "value": "course",
+        "type": "select",
+        "question": "Select Course Code"
+    },
+    {
+        "id": 2,
+        "value": "quality",
+        "type": "rate",
+        "question": "Rate your professor"
+    },
+    {
+        "id": 3,
+        "value": "difficulty",
+        "type": "rate",
+        "question": "How difficult was this professor?"
+    },
+    {
+        "id": 4,
+        "value": "WTCA",
+        "type": "radio",
+        "question": "Would you take this professor again?"
+    },
+    {
+        "id": 5,
+        "value": "TFC",
+        "type": "radio",
+        "question": "Was this class taken for credit?"
+    },
+    {
+        "id": 6,
+        "value": "textbook",
+        "type": "radio",
+        "question": "Did this professor use textbooks?"
+    },
+    {
+        "id": 7,
+        "value": "attendance",
+        "type": "radio",
+        "question": "Was attendance mandatory?"
+    },
+    {
+        "id": 8,
+        "value": "grade",
+        "type": "select",
+        "question": "Select grade received"
+    }
+
+]

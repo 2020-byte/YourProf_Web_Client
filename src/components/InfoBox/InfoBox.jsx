@@ -25,7 +25,7 @@ const InfoBox = ({item}) => {
                 <Stack className={styles.qualityInfoBox}>
                     <div className="d-flex">
                         <div className={styles.qualityBox} style={{backgroundColor: `${qualityColor}`}}>
-                            <div className={styles.quality}>
+                            <div style={{fontSize: '4rem'}} className={styles.quality}   >
                                 {item.quality < 0? "N/A": item.quality.toFixed(1)}
                             </div>
                         </div>
@@ -34,11 +34,13 @@ const InfoBox = ({item}) => {
                     <span className="pb-3">Overally Qualiity Based on <span style={{fontWeight:"900"}}>{item.ratings}</span> ratings</span>
                     <div className="d-flex justify-content-between">
                         <span className={styles.name}>{item.name}</span>
-                        <div onClick={() => toggleVisibility()} className={styles.bookmark} >
-                            {
-                                visible? <FaBookmark style={{color: '#F93E69'}}/>
-                                :<FaRegBookmark/>
-                            }
+                        <div className={styles.bookmark}>
+                            <div onClick={() => toggleVisibility()}  >
+                                {
+                                    visible? <FaBookmark style={{color: '#F93E69'}}/>
+                                    :<FaRegBookmark/>
+                                }
+                            </div>
                         </div>
                     </div>
                     <div className="pb-3">

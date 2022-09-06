@@ -5,8 +5,11 @@ import styles from './SelectBox.module.css';
 
 
 // TODO: 클릭했을 때 박스 열릴 때 깝빡이는 거 고쳐야함
-const SelectBox = ({name, id, items, handleSelect, selectedValue}) => {
+const SelectBox = ({name, id, items, handleSelect, selectedValue, setAll, setLabel, setWidth}) => {
 
+    const All = setAll === undefined? true: setAll;
+    const Label = setLabel === undefined? true: setLabel;
+    const width = setWidth === undefined? '50%': setWidth;
 
     const onChange = (e) => {
         handleSelect(e.target.value);
@@ -16,21 +19,26 @@ const SelectBox = ({name, id, items, handleSelect, selectedValue}) => {
 
     return (
         <div className={styles.body}>
-            <label htmlFor={name} className={styles.label}>
-                {name[0].toUpperCase() + name.slice(1)}: 
-                {/* 모두 소문자로 이루어진 문자열에서 첫번째 문자만 대문자로 */}
-            </label>
+            {
+                Label &&
+                <label htmlFor={name} className={styles.label}>
+                    {name[0].toUpperCase() + name.slice(1)}: 
+                    {/* 모두 소문자로 이루어진 문자열에서 첫번째 문자만 대문자로 */}
+                </label>
+            }
             <Form.Select 
             name={name} 
             id={id} 
             onChange={onChange} 
             aria-label="Default select example"
-            className="my-3 d-inline w-50"
+            className="my-3 d-inline"
+            style={{width: width}}
+            // className이랑 style이랑 값주는 게 겹치면 style안 먹힘. 그리고 비율 이상한 거 내가 이미 조정해논 거일 가능성을 인지하기
             size="lg"
             value={selectedValue? selectedValue: 'defaultValue'}
             >
                 <option value="defaultValue"  style={{display: 'none'}}> --Please choose an {name}-- </option>
-                <option value="any">All {name}</option>
+                {All && <option value="any">All {name}</option>}
                 {items.map(i => (
                     <option
                         key={i.id} 

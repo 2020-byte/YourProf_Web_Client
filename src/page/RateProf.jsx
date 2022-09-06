@@ -1,9 +1,19 @@
 import React from 'react';
+import { Stack } from 'react-bootstrap';
+import QuestionBox from '../components/QuestionBox/QuestionBox';
+import questions from '../data/question.json';
 
 const RateProf = (props) => {
 
+
     return (
-        <h1>Rate a Professor</h1>
+        <Stack gap={4}>
+            {
+                questions.map(i => (
+                    <QuestionBox key={i.id} question={i} />
+                ))
+            }
+        </Stack>
     )
 }
 
