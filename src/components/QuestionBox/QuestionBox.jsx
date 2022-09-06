@@ -5,6 +5,8 @@ import SelectBox from '../SelectBox.jsx/SelectBox';
 import styles from './QuestionBox.module.css';
 import { useParams } from 'react-router-dom';
 import RateBox from '../RateBox/RateBox';
+import RadioItem from '../RadioItem/RadioItem';
+import ReviewBox from '../ReivewBox/ReviewBox';
 
 const QuestionBox = ({question}) => {
 
@@ -51,7 +53,11 @@ const QuestionBox = ({question}) => {
                 }
                 {
                     question.type === 'radio' &&
-                    <h1>radio</h1>
+                    <RadioItem name={question.value} />
+                }
+                {
+                    question.type === 'textarea' &&
+                    <ReviewBox name={question.value}/>
                 }
             </div>
         </div>

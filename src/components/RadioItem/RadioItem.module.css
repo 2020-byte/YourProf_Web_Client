@@ -1,0 +1,41 @@
+.body {
+    display: flex;
+    margin: 2%;
+    align-items: baseline;
+
+    
+}
+
+.inputBox {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1rem;
+    
+}
+
+.input {
+    border: 2px solid rgb(158, 158, 158);
+    border-radius: 50%;
+    height: 4rem;
+    opacity: 0.5;
+    width: 4rem;
+    background-color: transparent;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
+}
+
+
+
+[type="radio"] {
+    appearance: none;
+}
+
+.label {
+
+    margin-top: 1rem;
+    vertical-align: baseline;
+}
