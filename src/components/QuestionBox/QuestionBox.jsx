@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import courses from '../../data/profCourseItems.json';
 import grades from '../../data/grades.json';
@@ -9,8 +9,9 @@ import RateBox from '../RateBox/RateBox';
 import RadioItem from '../RadioItem/RadioItem';
 import ReviewBox from '../ReivewBox/ReviewBox';
 
-const QuestionBox = ({question}) => {
+const QuestionBox = ({question, handleClick, checkSelected, allDone}) => {
 
+    question.type === 'tos' && console.log(allDone);
     const params = useParams();
     const profId = params.id;
 
@@ -22,18 +23,32 @@ const QuestionBox = ({question}) => {
 
     const [selected, setSelected] = useState();
 
+    useEffect(() => {
+        
+        if(
+            question.value ==='course' ||
+            question.value === 'quality' ||
+            question.value === 'difficulty' ||
+            question.value === "WTCA" ||
+            question.value === "review"
+        ) {
+            checkSelected && checkSelected(question.value, selected);
+        }
+    }, [selected])
+
+
+
     const handleSelect = (selected) => {
         setSelected(selected);
     }
 
-    const allSet = true;
-
     const unbuttonStyle = {
         backgroundColor: '#EDEDED',
-        boxShadow: 'rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;',
+        boxShadow: 'rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset',
         border: 'grey',
         color: '#A4A3A3'
     }
+
 
 
     return (
@@ -58,16 +73,16 @@ const QuestionBox = ({question}) => {
                 {
                     question.type === 'rate' &&
                     <div>
-                        <RateBox />
+                        <RateBox handleSelect={handleSelect}/>
                     </div>
                 }
                 {
                     question.type === 'radio' &&
-                    <RadioItem name={question.value} />
+                    <RadioItem name={question.value} handleSelect={handleSelect} />
                 }
                 {
                     question.type === 'textarea' &&
-                    <ReviewBox name={question.value}/>
+                    <ReviewBox name={question.value} handleSelect={handleSelect}/>
                 }
                 {
                     question.value === 'tos' &&
@@ -75,7 +90,12 @@ const QuestionBox = ({question}) => {
                         <p>
                             {question.question}
                         </p>
-                        <Button style={ !allSet? unbuttonStyle: {}} className={styles.button}>Submit Rating</Button>
+                        <Button 
+                            style={!allDone? unbuttonStyle: {}} 
+                            className={styles.button} 
+                            onClick={handleClick}>
+                            Submit Rating
+                        </Button>
                     </div>
                 }
             </div>

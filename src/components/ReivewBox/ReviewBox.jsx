@@ -4,11 +4,12 @@ import Accordion from 'react-bootstrap/Accordion';
 
 import styles from './ReviewBox.module.css';
 
-const ReviewBox = ({name}) => {
+const ReviewBox = ({name, handleSelect}) => {
 
     const [textValue, setTextValue] = useState("");
     const handleSetValue = (e) => {
         setTextValue(e.target.value);
+        handleSelect(e.target.value);
     };
 
     return (

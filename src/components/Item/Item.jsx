@@ -14,6 +14,7 @@ const Item = ({item}) => {
 
     const navigate = useNavigate();
     const handleClick = (e) => {
+            //console.log(e.currentTarget); 부모박스가 선택되네
         
         const prevent = e.target.className.baseVal;
         if(prevent === 'bookmark-off' || prevent === 'bookmark-on' || prevent === '') return

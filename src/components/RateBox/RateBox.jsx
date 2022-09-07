@@ -26,7 +26,7 @@ const findRateInfo = (rate) => {
     }
 }
 
-const RateBox = () => {
+const RateBox = ({handleSelect}) => {
 
     const itemNum = [1, 2, 3, 4, 5];
     
@@ -34,13 +34,18 @@ const RateBox = () => {
     const [isHover, setIsHover] = useState(false);
     const [preRate, setPreRate] = useState();
     const [rate, setRate] = useState();
-    const [clicked, setClicked] = useState(false);   
+    const [clicked, setClicked] = useState(false);
+    
+    useEffect(() => {
+        handleSelect(rate);
+    },[rate])
 
 
     const handleMouseEnter = (e) => {
         setIsHover(true);
+        
         // setPreRate(e._targetInst.key);
-        setPreRate(e._targetInst.key);        
+        setPreRate(e.currentTarget.id);        
         
     };//mouse event 맨아래에 거기에 key._targetInst.key 있음.
     //id={}임의로 집어넣고 e.currentTarget.id 사용할 수
@@ -55,6 +60,7 @@ const RateBox = () => {
         if(!clicked) {
             setClicked(() => true);
             setRate(e.currentTarget.id);
+
         }
         else if(clicked) {
             if(rate === e.currentTarget.id) {

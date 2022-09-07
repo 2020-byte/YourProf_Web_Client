@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { Stack } from 'react-bootstrap';
 import {AiOutlineCheck} from 'react-icons/ai';
 import { MdCancel} from "react-icons/md";
 import styles from './RadioItem.module.css';
 
-const RadioItem = ({name}) => {
+const RadioItem = ({name, handleSelect}) => {
 
     const [selectedValue, setSelectedValue] = useState();
     
@@ -12,13 +13,19 @@ const RadioItem = ({name}) => {
         setSelectedValue(e.target.value);
     }
 
+    useEffect(() => {
+        handleSelect(selectedValue)
+    }, [selectedValue])
+
     const [isHover, setIsHover] = useState(false);
     const [answer, setAnswer] = useState();
+
 
     const handleMouseEnter = (e) => {
         setAnswer(e.target.value);
         setIsHover(true);     
     };
+    //TODO: select랑 answer랑 헷갈릴 여지가 있으므로 수정하기
 
     const handleMouseLeave = () => {
         setAnswer();
