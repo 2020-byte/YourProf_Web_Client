@@ -15,6 +15,8 @@ const InfoBox = ({item}) => {
     const navigate = useNavigate();
     const onClick = () => {
         navigate(`/rateProf/${item.id}`)
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
     }
 
     const [visible, toggleVisibility] = useToggle(false);
@@ -25,7 +27,7 @@ const InfoBox = ({item}) => {
                 <Stack className={styles.qualityInfoBox}>
                     <div className="d-flex">
                         <div className={styles.qualityBox} style={{backgroundColor: `${qualityColor}`}}>
-                            <div style={{fontSize: '4rem'}} className={styles.quality}   >
+                            <div className={styles.quality} >
                                 {item.quality < 0? "N/A": item.quality.toFixed(1)}
                             </div>
                         </div>

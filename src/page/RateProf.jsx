@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { Stack } from 'react-bootstrap';
-import { AiFillSetting } from 'react-icons/ai';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import QuestionBox from '../components/QuestionBox/QuestionBox';
 import questions from '../data/question.json';
 
@@ -24,12 +23,13 @@ const RateProf = (props) => {
     const [allDone, setAllDone] = useState(false);
 
     useEffect(() => {
-        console.log(review);
+        
         course !== undefined &&
         quality !== undefined &&
         difficulty !== undefined &&
         WTCA !== undefined &&
-        review !== "" ?
+        review !== undefined &&
+        review !== ""?
         setAllDone(true): setAllDone(false);
     },[course, quality, difficulty, WTCA, review])
 
@@ -53,11 +53,14 @@ const RateProf = (props) => {
         }
     }
 
+    const params = useParams();
+    const profId = params.id;
+
     const navigate = useNavigate();
     const handleClick = () => {
         if(allDone) {
             console.log('button clicked');
-            navigate(`/search`);
+            navigate(`/search/${profId}`);
         } else {
             console.log("not choosed all required yet");
         }

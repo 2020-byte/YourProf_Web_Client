@@ -71,12 +71,17 @@
     padding-left: 2%;
 }
 
-.voteBox {
+.voteContainer {
     display: flex;
     font-size: 1.8rem;
     margin-top: 2%;
     margin-bottom: 2%;
     position: relative;
+}
+
+.voteBox {
+    /*TODO: 숫자 커지면 k로 바꿔서 박스 안넘어가게 해야함*/
+    padding-right: 50px;
 }
 
 .voteNum {
@@ -90,6 +95,19 @@
 .date {
     text-align: end;
 }
+
+.fixBox {
+    font-size:2.2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon:hover {
+    transform: scale(1.4);
+    cursor: pointer;
+}
+
 
 @media only screen and (max-width: 768px) {
 
@@ -126,4 +144,7 @@
     .moreInfoBox {
         margin-bottom: 10%;
     }
+
+
+
 }

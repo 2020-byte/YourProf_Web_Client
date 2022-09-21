@@ -28,6 +28,16 @@ const Header = (props) => {
         //!이걸로 반대로 해야되는 데 반대로 안해서 잠깐 헷갈림.
     }, [location])
 
+
+    const handleClick = (e) => {
+
+        if(e.target.id != "logOut") {
+            navigate(`/${e.target.id}`);
+            return;
+        }
+        
+    }
+
     return (
         <Navbar className={styles.navbar} expand="xl">
             <Container fluid className={"mx-lg-5 "+styles.container}>
@@ -51,10 +61,10 @@ const Header = (props) => {
                         </Button>
                     </Form>
                     <Dropdown title="Account" id="ScrollingDropdown" align="end">
-                    <DropdownItem address='/profile' name='My Profile'/>
-                    <DropdownItem address='/bookmark' name='BookMark' /> 
+                    <Dropdown.Item id="profile" onClick={handleClick}>My Profile</Dropdown.Item>
+                    <Dropdown.Item id="bookmark" onClick={handleClick}>Bookmark</Dropdown.Item>
                     <Dropdown.Divider />
-                    <DropdownItem address='/login' name='Log Out' /> 
+                    <Dropdown.Item id="logOut" onClick={handleClick}>Sign Out</Dropdown.Item>
                     </Dropdown>
             </Container>
         </Navbar>

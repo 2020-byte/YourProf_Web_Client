@@ -5,6 +5,8 @@ import Prof from './page/Prof';
 import RateProf from './page/RateProf';
 import Header from './components/Header/Header';
 import styles from './App.module.css';
+import Bookmark from './page/Bookmark';
+import Profile from './page/Profile';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
             <Route path="/search" element={<AllProfs/>} />
             <Route path="/search/:id" element={<Prof/>} />
             <Route path="/rateProf/:id" element={<RateProf/>} />
+            <Route path="/profile" element={<Profile/>} />
+            <Route path="/bookmark" element={<Bookmark />} />
           </Routes>
         </div>
         <div className={styles.widget}>

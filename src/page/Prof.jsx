@@ -9,7 +9,7 @@ import profItems from '../data/profItems.json';
 import ratingItems from '../data/ratingItems.json';
 import profCourseItems from '../data/profCourseItems.json';
 import RatingItem from '../components/RantingItem/RatingItem';
-import RatingTabs from '../components/RatingTabs/RatingTabs';
+import SearchTab from '../components/SearchTab/SearchTab';
 
 const filterItembyId = (items, Id) => {
     return items.filter(i => i.profId == Id);
@@ -53,13 +53,19 @@ const Prof = (props) => {
     
 
 
-    
-
     return (
         <div>
             <InfoBox item={prof}/>
             <div>
-                <RatingTabs numRating={filteredRatings.length} />
+                <SearchTab 
+                info={[
+                    {
+                        id: "1",
+                        numItem: filteredRatings.length,
+                        title: "Student Ratings",
+                        value: "rating"
+                    }
+                ]}/>
             </div>
             <div>
                 <SelectBox 

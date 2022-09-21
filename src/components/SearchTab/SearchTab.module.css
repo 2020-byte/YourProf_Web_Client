@@ -8,7 +8,7 @@
     text-align: center;
 }
 
-.liBox {
+.clickedLiBox {
     border-bottom: 2px solid rgb(21, 21, 21);
     color: rgb(21, 21, 21);
     cursor: pointer;
@@ -19,7 +19,17 @@
     
 }
 
-.liBox:hover {
+.liBox {
     border-bottom: 2px solid rgb(152, 152, 152);
     color: rgb(152, 152, 152);
+    cursor: pointer;
+    font-weight: 700;
+    line-height: 1.8;
+    min-width: 150px;
+    padding-bottom: 8px;
 }
+
+.liBox:hover {
+    color: rgb(21, 21, 21);
+}
+

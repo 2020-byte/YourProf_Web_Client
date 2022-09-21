@@ -3,6 +3,8 @@ import { Stack } from 'react-bootstrap';
 import  {FiThumbsUp, FiThumbsDown} from 'react-icons/fi';
 import  {HiThumbUp, HiThumbDown} from 'react-icons/hi';
 import {BsFlag, BsFlagFill} from 'react-icons/bs';
+import {BiEdit} from 'react-icons/bi';
+import {RiDeleteBin6Line} from 'react-icons/ri';
 import styles from './RatingItem.module.css';
 import chooseQualityColor from '../../hook/qualityColor';
 import useToggle from '../../hook/useToggle';
@@ -31,7 +33,8 @@ const findRateInfo = (rate) => {
 }
 
 
-const RatingItem = ({item, course}) => {
+const RatingItem = ({item, course, owe}) => {
+    console.log(owe);
 
     const qualityColor = chooseQualityColor(item.quality);
 
@@ -92,8 +95,8 @@ const RatingItem = ({item, course}) => {
                         <div className={styles.reviewText}>
                             {item.review}
                         </div>
-                        <div className={styles.voteBox}>
-                            <div style={{paddingRight: '6%'}}>
+                        <div className={styles.voteContainer}>
+                            <div className={styles.voteBox}>
                                 <span onClick={() => setThumbsUp()}>
                                     {
                                         thumbsUp? <HiThumbUp style={{color: '#F93E69'}}/>
@@ -117,12 +120,24 @@ const RatingItem = ({item, course}) => {
                 </div>
                 <div className="d-flex flex-column  justify-content-between align-items-end">
                     <div className={styles.date}>Dec 1st, 2017</div>
-                    <div onClick={() => setReport()} style={{fontSize:'1.8rem'}}>
-                        {
-                            report? <BsFlagFill style={{color: "red"}}/>:
-                            <BsFlag/>
-                        }
-                    </div>
+                    {
+                        !owe ?
+                        <div onClick={() => setReport()} className={styles.icon} style={{fontSize:'1.8rem'}}>
+                            {
+                                report? <BsFlagFill style={{color: "red"}}/>:
+                                <BsFlag/>
+                            }
+                        </div>
+                        :
+                        <div className={styles.fixBox} >
+                            <div className={styles.icon}>
+                                <BiEdit />
+                            </div>
+                            <div className={styles.icon} style={{paddingLeft: "10px"}}>
+                                <RiDeleteBin6Line/>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

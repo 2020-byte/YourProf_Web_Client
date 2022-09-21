@@ -1,0 +1,21 @@
+[
+    {
+        "id": "1",
+        "email": "cat@student.ubc.ca",
+        "reviews": 
+        [
+            "1", "2", "4"
+        ],
+        "upVotes":
+        [
+            "4"
+        ],
+        "downVotes":
+        [
+            "3"
+        ],
+        "reports": [
+            "1"
+        ]
+    }
+]
