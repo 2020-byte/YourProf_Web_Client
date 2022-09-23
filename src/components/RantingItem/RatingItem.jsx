@@ -34,7 +34,6 @@ const findRateInfo = (rate) => {
 
 
 const RatingItem = ({item, course, owe}) => {
-    console.log(owe);
 
     const qualityColor = chooseQualityColor(item.quality);
 

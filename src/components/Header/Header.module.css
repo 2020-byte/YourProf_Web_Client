@@ -19,8 +19,19 @@
     color: black;
 }
 
+
+.signButton {
+    background-color: transparent;
+    border: none;
+
+}
+
+
 @media only screen and (max-width: 768px) {
     .brand {
+        font-size: 1.5rem;
         letter-spacing: 0.1rem;
     }
+
+
 }

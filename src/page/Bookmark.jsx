@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import AllProfs from './AllProfs';
 import depItems from '../data/depItems.json';
 import SelectBox from '../components/SelectBox.jsx/SelectBox';
 import { Stack } from 'react-bootstrap';

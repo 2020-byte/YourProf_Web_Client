@@ -9,8 +9,9 @@ import { BsSearch } from 'react-icons/bs';
 import styles from './Header.module.css';
 import DropdownItem from '../DropdownItem/DropdownItem';
 import { useEffect } from 'react';
+import { BiLogOut } from 'react-icons/bi';
 
-const Header = (props) => {
+const Header = ({handleLogout, handleSignin, user}) => {
 
     const navigate = useNavigate();
 
@@ -35,13 +36,15 @@ const Header = (props) => {
             navigate(`/${e.target.id}`);
             return;
         }
+
+        handleLogout();
         
     }
 
     return (
         <Navbar className={styles.navbar} expand="xl">
             <Container fluid className={"mx-lg-5 "+styles.container}>
-                <Navbar.Brand as="span" className="mx-sm-0">
+                <Navbar.Brand as="span" className="mx-0">
                     <Link to="/" className={styles.brand} >YOUR PROF</Link>
                 </Navbar.Brand>
                     <Form 
@@ -60,12 +63,20 @@ const Header = (props) => {
                             <BsSearch className="pb-1" style={{fontSize: "1.5em"}} />
                         </Button>
                     </Form>
-                    <Dropdown title="Account" id="ScrollingDropdown" align="end">
-                    <Dropdown.Item id="profile" onClick={handleClick}>My Profile</Dropdown.Item>
-                    <Dropdown.Item id="bookmark" onClick={handleClick}>Bookmark</Dropdown.Item>
-                    <Dropdown.Divider />
-                    <Dropdown.Item id="logOut" onClick={handleClick}>Sign Out</Dropdown.Item>
-                    </Dropdown>
+                    {
+                        user &&
+                        <Dropdown title="Account" id="ScrollingDropdown" align="end">
+                        <Dropdown.Item id="profile" onClick={handleClick}>My Profile</Dropdown.Item>
+                        <Dropdown.Item id="bookmark" onClick={handleClick}>Bookmark</Dropdown.Item>
+                        <Dropdown.Divider />
+                        <Dropdown.Item id="logOut" onClick={handleClick}>Sign Out</Dropdown.Item>
+                        </Dropdown>
+                    }
+                    {
+                        !user &&
+                        <button className={styles.signButton} onClick={handleSignin}>Sign In</button>
+
+                    }
             </Container>
         </Navbar>
     );
