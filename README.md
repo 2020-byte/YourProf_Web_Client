@@ -3,6 +3,16 @@
 
 ## URL: https://extraordinary-toffee-eb14d1.netlify.app
 ***
+> This web page is a single web application created using React.
+
+>I visited a site called rate your prof to see the propensity of professors whom I will take courses of, but there was less information about professors in our school than I thought.
+Then, I thought it would be nice that there is website for our own school and I started to make this. 
+It has been good way that I can test and improve my understanding how to use React.
+
+>This repository was implemented only for the client.
+Later, It will be build a server and implement it so that only those who have emails from our school can rate.
+***
+
 &nbsp;
 ## Search feature
 <img width="1100" alt="image" src="https://user-images.githubusercontent.com/76520105/188274979-617c1c4a-99e5-4864-a9a2-7247a8492e33.png">
