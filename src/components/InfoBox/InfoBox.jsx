@@ -17,6 +17,10 @@ const InfoBox = ({item}) => {
     
     const navigate = useNavigate();
     const onClick = () => {
+        if(!user) {
+            navigate('/login');
+            return
+        }
         navigate(`/rateProf/${item.id}`)
         window.scrollTo({ top: 0, behavior: "smooth" });
 
