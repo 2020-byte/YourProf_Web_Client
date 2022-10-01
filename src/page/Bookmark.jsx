@@ -13,7 +13,7 @@ const Bookmark = (props) => {
     const auth = useAuth().user;
     useEffect(() => {
         !auth && navigate('/');
-    }, [auth])
+    }, [auth, navigate])
 
     const [department, setDepartment] = useState();
 

@@ -7,7 +7,7 @@ import Header from './components/Header/Header';
 import styles from './App.module.css';
 import Bookmark from './page/Bookmark';
 import Profile from './page/Profile';
-import { AuthProvider, useAuth } from './context/AuthContent';
+import { useAuth } from './context/AuthContent';
 import Login from './page/Login';
 
 function App() {

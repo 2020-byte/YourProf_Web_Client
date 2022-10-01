@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { useEffect } from 'react';
 import {Stack} from 'react-bootstrap';
-import { Link, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import Item from '../components/Item/Item';
 import SelectBox from '../components/SelectBox.jsx/SelectBox';
 import profItems from '../data/profItems.json';
@@ -45,7 +45,7 @@ const AllProfs = () => {
         <>
             <h1>
                 {
-                    filteredItems == profItems ?
+                    filteredItems === profItems ?
                     `All Professors.`:
                     filteredItems.length === 0 ?
                     `No professors with "${search_word}" in their name.`:

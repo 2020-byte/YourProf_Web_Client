@@ -17,22 +17,22 @@ const Login = ({onSignUp, onLogin}) => {
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [text, setText] = useState('');
-    const [isAlert, setIsAlert] = useState(false);
+    // const [text, setText] = useState('');
+    // const [isAlert, setIsAlert] = useState(false);
 
     const onSubmit = (event) => {
         event.preventDefault();
         if (signup) {
-        onSignUp(username, password, name, email).catch(setError);
+            onSignUp(username, password, name, email)//.catch(setError);
         } else {
-        onLogin(username, password).catch(setError);
+            onLogin(username, password)//.catch(setError);
         }
     };
 
-    const setError = (error) => {
-        setText(error.toString());
-        setIsAlert(true);
-    };
+    // const setError = (error) => {
+    //     setText(error.toString());
+    //     setIsAlert(true);
+    // };
 
     const onChange = (event) => {
         const {
