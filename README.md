@@ -11,3 +11,6 @@
 <img width="1115" alt="image" src="https://user-images.githubusercontent.com/76520105/192065580-bb7a15fc-4635-4456-9232-116026a70440.png">
 <img width="1085" alt="image" src="https://user-images.githubusercontent.com/76520105/192065616-ceb7ec41-d962-4850-8965-41ac5099f1bf.png">
 
+The profile or bookmark page did not set the data to be synchronized according to selection.
+Basically, it can be implemented in the same way as if the function was created to set the scope of a professor or subject after searching.
+However, rather than creating a demonstration by setting it up temporarily with just the client, I thought it was less work to connect and set it up right away while creating the server.
