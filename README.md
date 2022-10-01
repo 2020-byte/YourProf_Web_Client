@@ -24,7 +24,7 @@
 <img width="1026" alt="image" src="https://user-images.githubusercontent.com/76520105/188953035-561ba108-f104-4180-a6c9-4c529de86db0.png">
 <img width="797" alt="image" src="https://user-images.githubusercontent.com/76520105/188953072-72ca5dab-9717-47c7-81a1-7bb7f7bd1530.png">
 
-> When evaluating, you must answer four questions from the top and write a review to press the Submit Evaluation button.
+> When evaluating, you must answer four questions from the top and write a review to activate the Submit Evaluation button.
 
 ***
 
