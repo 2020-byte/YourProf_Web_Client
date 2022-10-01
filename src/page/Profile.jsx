@@ -9,8 +9,18 @@ import ratingItems from '../data/ratingItems.json';
 import profCourseItems from '../data/profCourseItems.json';
 import RatingItem from '../components/RantingItem/RatingItem';
 import { Stack } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContent';
 
 const Profile = (props) => {
+
+
+    const navigate = useNavigate();
+    const auth = useAuth().user;
+    useEffect(() => {
+        !auth && navigate('/');
+    }, [auth])
+
 
     const user = users.find(i => i.id == 1);
     const [info, setInfo] = useState(

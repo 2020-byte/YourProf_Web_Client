@@ -31,7 +31,7 @@ function App() {
 
   const handleSignin = () => {
     signin();
-    navigate('/');
+    navigate(-1);
     //TODO: history back 같은 걸로 원래 있던데로 되돌아가게
   }
 

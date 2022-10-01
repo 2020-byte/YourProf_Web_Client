@@ -21,7 +21,7 @@ const filterItem = (sw, dep) => {
     )
 }
 
-const AllProfs = (props) => {
+const AllProfs = () => {
 
     const [searchParams] = useSearchParams();
     const search_word = searchParams.get('prof');

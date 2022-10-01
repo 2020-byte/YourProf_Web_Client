@@ -6,6 +6,7 @@ import styles from './Item.module.css';
 import chooseQualityColor from '../../hook/qualityColor';
 import useToggle from '../../hook/useToggle';
 import { useRef } from 'react';
+import { useAuth } from '../../context/AuthContent';
 
 
 const Item = ({item}) => {
@@ -23,6 +24,8 @@ const Item = ({item}) => {
     }
 
     const [visible, toggleVisibility] = useToggle(false);
+
+    const { user } = useAuth();
 
 
 
@@ -63,13 +66,16 @@ const Item = ({item}) => {
                 </div>
             </Stack>
             <div  className={styles.bookmark}>
-                <div onClick={() => {toggleVisibility();}} >
-                    {
-                        visible? 
-                        <FaBookmark className="bookmark-on" style={{color: '#F93E69'}} />
-                        :<FaRegBookmark className="bookmark-off" />
-                    }
-                </div>
+                {
+                    user &&
+                    <div onClick={() => {toggleVisibility();}} >
+                        {
+                            visible? 
+                            <FaBookmark className="bookmark-on" style={{color: '#F93E69'}} />
+                            :<FaRegBookmark className="bookmark-off" />
+                        }
+                    </div>
+                }
             </div>
             
             

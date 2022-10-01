@@ -9,6 +9,7 @@ import styles from './RatingItem.module.css';
 import chooseQualityColor from '../../hook/qualityColor';
 import useToggle from '../../hook/useToggle';
 import { useEffect } from 'react';
+import { useAuth } from '../../context/AuthContent';
 
 
 const findRateInfo = (rate) => {
@@ -34,6 +35,8 @@ const findRateInfo = (rate) => {
 
 
 const RatingItem = ({item, course, owe}) => {
+    const {user} = useAuth();
+    
 
     const qualityColor = chooseQualityColor(item.quality);
 
@@ -96,18 +99,18 @@ const RatingItem = ({item, course, owe}) => {
                         </div>
                         <div className={styles.voteContainer}>
                             <div className={styles.voteBox}>
-                                <span onClick={() => setThumbsUp()}>
+                                <span onClick={() => user && setThumbsUp()}>
                                     {
-                                        thumbsUp? <HiThumbUp style={{color: '#F93E69'}}/>
+                                        user && thumbsUp? <HiThumbUp style={{color: '#F93E69'}}/>
                                         : <FiThumbsUp />
                                     }
                                 </span>
                                 <span className={styles.voteNum}>{item.thumbsUp}</span>
                             </div>
                             <div style={{paddingRight: '6%'}}>
-                                <span onClick={() => setThumbsDown()}>
+                                <span onClick={() => user && setThumbsDown()}>
                                     {
-                                        thumbsDown? <HiThumbDown style={{color: '#F93E69'}}/>
+                                        user && thumbsDown? <HiThumbDown style={{color: '#F93E69'}}/>
                                         : <FiThumbsDown />
                                     }
                                 </span>
@@ -120,14 +123,16 @@ const RatingItem = ({item, course, owe}) => {
                 <div className="d-flex flex-column  justify-content-between align-items-end">
                     <div className={styles.date}>Dec 1st, 2017</div>
                     {
-                        !owe ?
+                        user && !owe &&
                         <div onClick={() => setReport()} className={styles.icon} style={{fontSize:'1.8rem'}}>
                             {
                                 report? <BsFlagFill style={{color: "red"}}/>:
                                 <BsFlag/>
                             }
                         </div>
-                        :
+                    }
+                    {
+                        user && owe &&
                         <div className={styles.fixBox} >
                             <div className={styles.icon}>
                                 <BiEdit />

@@ -6,8 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import styles from './InfoBox.module.css';
 import chooseQualityColor from '../../hook/qualityColor';
 import useToggle from '../../hook/useToggle';
+import { useAuth } from '../../context/AuthContent';
 
 const InfoBox = ({item}) => {
+
+    const { user } = useAuth();
 
     //TODO: customHook처리하기
     const qualityColor = chooseQualityColor(item.quality);
@@ -36,14 +39,17 @@ const InfoBox = ({item}) => {
                     <span className="pb-3">Overally Qualiity Based on <span style={{fontWeight:"900"}}>{item.ratings}</span> ratings</span>
                     <div className="d-flex justify-content-between">
                         <span className={styles.name}>{item.name}</span>
-                        <div className={styles.bookmark}>
-                            <div onClick={() => toggleVisibility()}  >
-                                {
-                                    visible? <FaBookmark style={{color: '#F93E69'}}/>
-                                    :<FaRegBookmark/>
-                                }
+                        {
+                            user &&
+                            <div className={styles.bookmark}>
+                                <div onClick={() => toggleVisibility()}  >
+                                    {
+                                        visible? <FaBookmark style={{color: '#F93E69'}}/>
+                                        :<FaRegBookmark/>
+                                    }
+                                </div>
                             </div>
-                        </div>
+                        }
                     </div>
                     <div className="pb-3">
                         Professor in the {item.department} at {item.university}

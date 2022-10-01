@@ -1,6 +1,7 @@
 .ulBox {
     border-bottom: 2px solid rgb(241, 241, 241);
     display: flex;
+    flex-wrap: wrap;
     margin: 28px 22px 0px 0px;
     padding: 0px;
     list-style: none;
@@ -32,4 +33,3 @@
 .liBox:hover {
     color: rgb(21, 21, 21);
 }
-

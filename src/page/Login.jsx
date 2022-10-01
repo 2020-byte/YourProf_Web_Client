@@ -105,7 +105,7 @@ const Login = ({onSignUp, onLogin}) => {
                     onChange={onChange}
                     checked={signup}
                 />
-                <label className="my-3" htmlFor='signup'> Create a new account?</label>
+                <label className="my-3 ms-1" htmlFor='signup'> Create a new account?</label>
                 </div>
                 <Button className='form-btn auth-form-btn w-100' type='submit'>
                 {signup ? 'Sign Up' : 'Sign In'}
