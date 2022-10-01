@@ -22,6 +22,9 @@
 ## Log feature
 <img width="1101" alt="image" src="https://user-images.githubusercontent.com/76520105/192065561-39837988-1f26-42bb-bb0f-23063a8b6e28.png">
 <img width="1115" alt="image" src="https://user-images.githubusercontent.com/76520105/192065580-bb7a15fc-4635-4456-9232-116026a70440.png">
+
+> When demonstrate sign up or login function, it is not connected to the server, so you can enter anything and log in or sign up.
+
 ***
 
 ## Profile
