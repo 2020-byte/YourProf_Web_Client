@@ -33,7 +33,7 @@ const Header = ({handleLogout, handleSignin, user}) => {
     const handleClick = (e) => {
 
         if(e.target.id != "logOut") {
-            navigate(`/${e.target.id}`);
+            navigate(`/account/${e.target.id}`);
             return;
         }
 

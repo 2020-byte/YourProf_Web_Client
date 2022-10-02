@@ -48,8 +48,8 @@ function App() {
               <Route path="/profs/:id" element={<Prof/>} />
               <Route path="/profs/:id/newrating" element={<RateProf/>} />
               <Route path="/ratings/:id" element={<RateProf/>} />
-              <Route path="/profile" element={<Profile/>} />
-              <Route path="/bookmark" element={<Bookmark />} />
+              <Route path="/account/profile" element={<Profile/>} />
+              <Route path="/account/bookmark" element={<Bookmark />} />
               <Route path="/login" element={<Login onLogin={handleSignin} onSignUp={handleSignin} />} />
             </Routes>
             
