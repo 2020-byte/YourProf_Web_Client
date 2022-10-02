@@ -103,7 +103,7 @@ const Profile = (props) => {
             />
             <Stack gap={4}>
                 {items.map(item => (
-                    <RatingItem key={item.id} item={item} course={profCourseItems.find(i => i.id == item.courseId)} owe={true}/>
+                    <RatingItem key={item.id} item={item} course={profCourseItems.find(i => i.id == item.courseId)}/>
                 ))}
             </Stack>
         </div>

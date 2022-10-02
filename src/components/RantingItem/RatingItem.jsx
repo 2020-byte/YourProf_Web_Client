@@ -34,7 +34,7 @@ const findRateInfo = (rate) => {
 }
 
 
-const RatingItem = ({item, course, owe}) => {
+const RatingItem = ({item, course}) => {
     const {user} = useAuth();
     
 
@@ -123,7 +123,7 @@ const RatingItem = ({item, course, owe}) => {
                 <div className="d-flex flex-column  justify-content-between align-items-end">
                     <div className={styles.date}>Dec 1st, 2017</div>
                     {
-                        user && !owe &&
+                        user && !true &&
                         <div onClick={() => setReport()} className={styles.icon} style={{fontSize:'1.8rem'}}>
                             {
                                 report? <BsFlagFill style={{color: "red"}}/>:
@@ -132,7 +132,7 @@ const RatingItem = ({item, course, owe}) => {
                         </div>
                     }
                     {
-                        user && owe &&
+                        user && true && //TODO: current user가 쓴 건지 매치할 수 있도록 해야함.
                         <div className={styles.fixBox} >
                             <div className={styles.icon}>
                                 <BiEdit />
