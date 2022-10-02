@@ -44,9 +44,10 @@ function App() {
           
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/search" element={<AllProfs/>} />
-              <Route path="/search/:id" element={<Prof/>} />
-              <Route path="/rateProf/:id" element={<RateProf/>} />
+              <Route path="/profs" element={<AllProfs/>} />
+              <Route path="/prof/:id" element={<Prof/>} />
+              <Route path="/prof/:id/newrating" element={<RateProf/>} />
+              <Route path="/rating/:id" element={<RateProf/>} />
               <Route path="/profile" element={<Profile/>} />
               <Route path="/bookmark" element={<Bookmark />} />
               <Route path="/login" element={<Login onLogin={handleSignin} onSignUp={handleSignin} />} />

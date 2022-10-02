@@ -20,7 +20,7 @@ const Item = ({item}) => {
         const prevent = e.target.className.baseVal;
         if(prevent === 'bookmark-off' || prevent === 'bookmark-on' || prevent === '') return
         //배열 index까지 정확하게 붙여주는 거 까먹지 않기.
-        navigate(`/search/${item.id}`)
+        navigate(`/prof/${item.id}`)
     }
 
     const [visible, toggleVisibility] = useToggle(false);

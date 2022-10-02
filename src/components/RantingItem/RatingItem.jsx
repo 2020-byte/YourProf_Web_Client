@@ -10,6 +10,7 @@ import chooseQualityColor from '../../hook/qualityColor';
 import useToggle from '../../hook/useToggle';
 import { useEffect } from 'react';
 import { useAuth } from '../../context/AuthContent';
+import { useNavigate } from 'react-router-dom';
 
 
 const findRateInfo = (rate) => {
@@ -53,6 +54,18 @@ const RatingItem = ({item, course}) => {
     }, [thumbsDown])
 
     const [report, setReport] = useToggle(false);
+
+
+    const navigate = useNavigate();
+    const handleEdit = () => {
+        navigate(`/rating/${item.id}`);
+    }
+
+    const handleDelete = () => {
+        if (window.confirm('Do you want to delete?')) {
+            
+        }
+    }
 
     return (
         <div className={styles.bodyBox}>
@@ -134,10 +147,10 @@ const RatingItem = ({item, course}) => {
                     {
                         user && true && //TODO: current user가 쓴 건지 매치할 수 있도록 해야함.
                         <div className={styles.fixBox} >
-                            <div className={styles.icon}>
+                            <div className={styles.icon} onClick={handleEdit}>
                                 <BiEdit />
                             </div>
-                            <div className={styles.icon} style={{paddingLeft: "10px"}}>
+                            <div className={styles.icon} style={{paddingLeft: "10px"}} onClick={handleDelete}>
                                 <RiDeleteBin6Line/>
                             </div>
                         </div>

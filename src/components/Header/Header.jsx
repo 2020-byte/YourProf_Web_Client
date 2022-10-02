@@ -19,7 +19,7 @@ const Header = ({handleLogout, handleSignin, user}) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        navigate(`/search?prof=${searchRef.current.value}`)
+        navigate(`/profs?search=${searchRef.current.value}`)
     };
 
 
