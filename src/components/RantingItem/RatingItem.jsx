@@ -10,7 +10,7 @@ import chooseQualityColor from '../../hook/qualityColor';
 import useToggle from '../../hook/useToggle';
 import { useEffect } from 'react';
 import { useAuth } from '../../context/AuthContent';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 
 const findRateInfo = (rate) => {
@@ -58,9 +58,11 @@ const RatingItem = ({item, course}) => {
 
     const navigate = useNavigate();
     const handleEdit = () => {
-        navigate(`/ratings/${item.id}`);
+        navigate(`/profs/${item.profId}/ratings/${item.id}`);
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
+
+
 
     const handleDelete = () => {
         if (window.confirm('Do you want to delete?')) {

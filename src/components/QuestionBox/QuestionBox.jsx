@@ -4,16 +4,16 @@ import courses from '../../data/profCourseItems.json';
 import grades from '../../data/grades.json';
 import SelectBox from '../SelectBox.jsx/SelectBox';
 import styles from './QuestionBox.module.css';
-import { useParams } from 'react-router-dom';
 import RateBox from '../RateBox/RateBox';
 import RadioItem from '../RadioItem/RadioItem';
 import ReviewBox from '../ReivewBox/ReviewBox';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 const QuestionBox = ({question, handleClick, checkSelected, allDone}) => {
 
     question.type === 'tos' && console.log(allDone);
     const params = useParams();
-    const profId = params.id;
+    const profId = params.profId;
 
     const selectItems = 
         question.value === "course" ? courses.filter(i => i.profId == profId):

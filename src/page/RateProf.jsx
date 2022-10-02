@@ -60,7 +60,7 @@ const RateProf = (props) => {
     const handleClick = () => {
         if(allDone) {
             console.log('button clicked');
-            navigate(`/search/${profId}`);
+            navigate(-1);
         } else {
             console.log("not choosed all required yet");
         }

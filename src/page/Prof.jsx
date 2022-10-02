@@ -18,7 +18,7 @@ const filterItembyId = (items, Id) => {
 const Prof = (props) => {
 
     const params = useParams();
-    const profId = params.id;
+    const profId = params.profId;
 
     const prof = profItems.find(i => i.id == profId);
 
