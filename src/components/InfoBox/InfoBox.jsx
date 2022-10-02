@@ -21,7 +21,7 @@ const InfoBox = ({item}) => {
             navigate('/login');
             return
         }
-        navigate(`/prof/${item.id}/newrating`)
+        navigate(`/profs/${item.id}/newrating`)
         window.scrollTo({ top: 0, behavior: "smooth" });
 
     }

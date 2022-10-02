@@ -58,7 +58,8 @@ const RatingItem = ({item, course}) => {
 
     const navigate = useNavigate();
     const handleEdit = () => {
-        navigate(`/rating/${item.id}`);
+        navigate(`/ratings/${item.id}`);
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     const handleDelete = () => {
