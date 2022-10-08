@@ -10,7 +10,7 @@ import Profile from './page/Profile';
 import { useAuth } from './context/AuthContent';
 import Login from './page/Login';
 
-function App() {
+function App({dataService}) {
 
   const navigate = useNavigate();
 
@@ -44,12 +44,13 @@ function App() {
           
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/profs" element={<AllProfs/>} />
-              <Route path="/profs/:profId" element={<Prof/>} />
-              <Route path="/profs/:profId/ratings" element={<RateProf/>} />
-              <Route path="/profs/:profId/ratings/:ratingId" element={<RateProf/>} />
-              <Route path="/account/profile" element={<Profile/>} />
-              <Route path="/account/bookmark" element={<Bookmark />} />
+              <Route path="/profs" element={<AllProfs dataService={dataService}/>} />
+              <Route path="/profs/departments/:departmentId" element={<AllProfs dataService={dataService}/>} />
+              <Route path="/profs/:profId" element={<Prof dataService={dataService}/>} />
+              <Route path="/profs/:profId/ratings" element={<RateProf dataService={dataService}/>} />
+              <Route path="/profs/:profId/ratings/:ratingId" element={<RateProf dataService={dataService}/>} />
+              <Route path="/account/profile" element={<Profile dataService={dataService}/>} />
+              <Route path="/account/bookmark" element={<Bookmark dataService={dataService}/>} />
               <Route path="/login" element={<Login onLogin={handleSignin} onSignUp={handleSignin} />} />
             </Routes>
             

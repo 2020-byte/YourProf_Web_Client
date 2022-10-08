@@ -12,7 +12,7 @@ const AuthContext = createContext({});
 
 const contextRef = createRef();
 
-export function AuthProvider({children}) {
+export function AuthProvider({authService, authErrorEventBus, children}) {
     const [user, setUser] = useState(false);
 
     const logout = () => {
@@ -39,6 +39,16 @@ export function AuthProvider({children}) {
             {(children)}
         </AuthContext.Provider>
     )
+}
+
+export class AuthErrorEventBus {
+    listen(callback) {
+        this.callback = callback;
+    }
+
+    notify(error) {
+        this.callback(error);
+    }
 }
 
 export default AuthContext;

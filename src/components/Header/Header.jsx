@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Navbar from 'react-bootstrap/Navbar';
 import Dropdown from 'react-bootstrap/NavDropdown';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link, useLocation, useNavigate, useParams, useSearchParams} from 'react-router-dom';
 import { BsSearch } from 'react-icons/bs';
 import styles from './Header.module.css';
 import DropdownItem from '../DropdownItem/DropdownItem';
@@ -14,19 +14,27 @@ import { BiLogOut } from 'react-icons/bi';
 const Header = ({handleLogout, handleSignin, user}) => {
 
     const navigate = useNavigate();
-
+    
+    // const params = useParams(); 왜 parmas만 안받아와질까
+    // const [searchParams] = useSearchParams();
+    // console.log(searchParams.get('search'));
+    // console.log(params);
+    
+    const location = useLocation();
+    const [searchParams] = useSearchParams();
+    const search = searchParams.get('search');
     const searchRef = useRef();
 
     const onSubmit = (e) => {
         e.preventDefault();
-        navigate(`/profs?search=${searchRef.current.value}`)
+        const pathname = location.pathname.includes('/profs')? location.pathname: "/profs";
+        navigate(`${pathname}?search=${searchRef.current.value}`)
     };
 
 
-    const location = window.location.pathname
+    
     useEffect(() => {
-        if(!location.includes('/search')) searchRef.current.value = "";
-        //!이걸로 반대로 해야되는 데 반대로 안해서 잠깐 헷갈림.
+        searchRef.current.value = search? search: "";
     }, [location])
 
 

@@ -17,6 +17,8 @@ const SelectBox = ({name, id, items, handleSelect, selectedValue, setAll, setLab
 
     
 
+    
+
     return (
         <div className={styles.body}>
             {
@@ -38,11 +40,12 @@ const SelectBox = ({name, id, items, handleSelect, selectedValue, setAll, setLab
             value={selectedValue? selectedValue: 'defaultValue'}
             >
                 <option value="defaultValue"  style={{display: 'none'}}> --Please choose an {name}-- </option>
-                {All && <option value="any">All {name}</option>}
+                {All && <option value={0} >All {name}</option>}
                 {items.map(i => (
                     <option
-                        key={i.id} 
-                        value={i.name}
+                        key={i.id}
+                        value={i.id}
+                        name={i.name}
                     >
                         {i.name}
                     </option>

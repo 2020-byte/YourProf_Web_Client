@@ -60,7 +60,7 @@ const Login = ({onSignUp, onLogin}) => {
                     <Form.Control
                     name='username'
                     type='text'
-                    placeholder='Id'
+                    placeholder='Username'
                     value={username}
                     onChange={onChange}
                     className='form-input'
