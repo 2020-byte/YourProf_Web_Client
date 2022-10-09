@@ -6,21 +6,24 @@ import Item from '../components/Item/Item';
 import SelectBox from '../components/SelectBox.jsx/SelectBox';
 import profItems from '../data/profItems.json';
 import depItems from '../data/depItems.json';
+import useOnError from '../hook/useOnError';
 
 
-const filterItem = (profs, dep) => {
-    const filteredByDep = dep === 'any' || dep === undefined || dep === "defaultValue"? profs
-    : profs.filter(i => i.departmentname === dep);
+// const filterItem = (profs, dep) => {
+//     const filteredByDep = dep === 'any' || dep === undefined || dep === "defaultValue"? profs
+//     : profs.filter(i => i.departmentname === dep);
 
-    // if(sw === "" || sw === null || sw === undefined) 
-    return filteredByDep;
+//     // if(sw === "" || sw === null || sw === undefined) 
+//     return filteredByDep;
     
-    // const filter = sw.toLowerCase();
-    // return (
-    //     filteredByDep.filter(i => i.name.trim().toLowerCase().includes(filter))
-    //     //특정 문자열 포함된 문자열 찾으려면 정규표현식말고 includes 쓰면 됨.
-    // )
-}
+//     // const filter = sw.toLowerCase();
+//     // return (
+//     //     filteredByDep.filter(i => i.name.trim().toLowerCase().includes(filter))
+//     //     //특정 문자열 포함된 문자열 찾으려면 정규표현식말고 includes 쓰면 됨.
+//     // )
+// }
+
+
 
 
 const AllProfs = ({dataService}) => {
@@ -35,7 +38,8 @@ const AllProfs = ({dataService}) => {
 
 
 
-    const [error, setError] = useState('');
+    //const [error, setError] = useState('');
+    const [error, onError] = useOnError('');
 
     const [departments, setDepartments] = useState([]);
 
@@ -60,7 +64,7 @@ const AllProfs = ({dataService}) => {
     }
 
     useEffect(() => {
-        depId > 0 ?
+        depId?
         dataService
         .getProfswithDepartment(depId, search)
         .then((profs) => setProfs([...profs]))
@@ -79,28 +83,23 @@ const AllProfs = ({dataService}) => {
 
     const filteredItems = profs;
 
-    // useEffect(() => {
-    //     setDepId();
-    // }, [search])
 
-
-
-    const onError = (error) => {
-        setError(error.toString());
-        setTimeout(() => {
-            setError('');
-        }, 3000);
-    };
+    // const onError = (error) => {
+    //     setError(error.toString());
+    //     setTimeout(() => {
+    //         setError('');
+    //     }, 3000);
+    // };
 
     return (
         <>
             <h1>
                 {
-                    filteredItems === profItems ?
+                    (depId == 0 || !depId) && search === "" ?
                     `All Professors.`:
-                    filteredItems.length === 0 ?
+                    profs.length === 0 ?
                     `No professors with "${search}" in their name.`:
-                    `${filteredItems.length} professors with "${search}" in their name.`
+                    `${profs.length} professors with "${search}" in their name.`
                     
                 }
             </h1>

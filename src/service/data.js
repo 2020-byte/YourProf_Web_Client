@@ -28,7 +28,24 @@ export default class DataService {
         });
     }
 
+    async getProfInfo(profId) {
+        const data =  this.http.fetch(`/profs/${profId}`, {    //url 앞에 /이거 빼먹지 않기.
+            method: 'GET',
+            headers: this.getHeaders(),
+        });
+        return data;
+    }
+
+    async getRatingsbyProfIdwithCourseId(profId, courseId) {
+        const data =  this.http.fetch(`/profs/${profId}/courses/${courseId}`, {    //url 앞에 /이거 빼먹지 않기.
+            method: 'GET',
+            headers: this.getHeaders(),
+        });
+        return data;
+    }
+
     async postRating(ratingInfo) {
+        console.log(ratingInfo);
         return this.http.fetch(`/profs/${ratingInfo.profId}/ratings`, {
             method: 'POST',
             headers: this.getHeaders(),

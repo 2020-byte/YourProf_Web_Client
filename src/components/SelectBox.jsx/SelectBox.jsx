@@ -5,13 +5,15 @@ import styles from './SelectBox.module.css';
 
 
 // TODO: 클릭했을 때 박스 열릴 때 깝빡이는 거 고쳐야함
-const SelectBox = ({name, id, items, handleSelect, selectedValue, setAll, setLabel, setWidth}) => {
+const SelectBox = ({name, id, items, handleSelect, selectedValue, setAll, setNA, setLabel, setWidth}) => {
 
     const All = setAll === undefined? true: setAll;
+    const NA = setNA === undefined? true: setNA;
     const Label = setLabel === undefined? true: setLabel;
     const width = setWidth === undefined? '50%': setWidth;
 
     const onChange = (e) => {
+        //console.log(e.target.value);
         handleSelect(e.target.value);
     };
 
@@ -41,6 +43,7 @@ const SelectBox = ({name, id, items, handleSelect, selectedValue, setAll, setLab
             >
                 <option value="defaultValue"  style={{display: 'none'}}> --Please choose an {name}-- </option>
                 {All && <option value={0} >All {name}</option>}
+                {!NA && <option value={0} >N/A</option>}
                 {items.map(i => (
                     <option
                         key={i.id}

@@ -36,6 +36,8 @@ const findRateInfo = (rate) => {
 
 
 const RatingItem = ({item, course}) => {
+
+
     const {user} = useAuth();
     
 
@@ -99,16 +101,17 @@ const RatingItem = ({item, course}) => {
                         {/* 간격 맞춰서 패딩 줘야 하면 <Stack direction="horizontal" gap={3}></Stack> 이거 쓰자. */}
                         <Stack className="ps-2" direction="horizontal" gap={3}>
                             <div style={{fontWeight:'900'}}>{course.name}</div>
-                            <div className={styles.rateBox} style={{ backgroundColor: `${findRateInfo(item.rate)[1]}`}}>{findRateInfo(item.rate)[0]}</div>
+                            <div className={styles.rateBox} style={{ backgroundColor: `${findRateInfo(item.quality)[1]}`}}>{findRateInfo(item.quality)[0]}</div>
                         </Stack>
                         <div className={styles.moreInfoBox}>
-                            <div className={styles.moreInfoItem}>For Credit: <span style={{fontWeight:'700'}}>Yes</span></div>
-                            <div className={styles.moreInfoItem} >Attendance: <span style={{fontWeight:'700'}}>{item.attendance? "Mandatory":"Not Mandatory"}</span></div>
-                            <div className={styles.moreInfoItem}>Would Take Again: <span style={{fontWeight:'700'}}>{item.WTCA? "Yes": "No"}</span></div>
-                            <div className={styles.moreInfoItem} >Grade: <span style={{fontWeight:'700'}}>{item.grade}</span></div>
+                            {/* for credit sequelize로 column 생성해줘야함. 없는 줄 알고 안했음 */}
+                            <div className={styles.moreInfoItem}>For Credit: <span style={{fontWeight:'700'}}>{item.attendance === null? "N/A": item.TFC? "Yes": "No"}</span></div>
+                            <div className={styles.moreInfoItem} >Attendance: <span style={{fontWeight:'700'}}>{item.attendance === null? "N/A": item.attendance? "Mandatory":"Not Mandatory"}</span></div>
+                            <div className={styles.moreInfoItem}>Would Take Again: <span style={{fontWeight:'700'}}>{item.WTCA === null? "N/A": item.WTCA? "Yes": "No"}</span></div>
+                            <div className={styles.moreInfoItem} >Grade: <span style={{fontWeight:'700'}}>{item.gradename}</span></div>
                         </div>
                         <div className="ps-2">
-                            Textbook: <span style={{fontWeight:'700'}}>{item.textbook? "Yes": "No"}</span>
+                            Textbook: <span style={{fontWeight:'700'}}>{item.textbook === null? "N/A": item.textbook? "Yes": "No"}</span>
                         </div>
                         <div className={styles.reviewText}>
                             {item.review}
@@ -121,7 +124,7 @@ const RatingItem = ({item, course}) => {
                                         : <FiThumbsUp />
                                     }
                                 </span>
-                                <span className={styles.voteNum}>{item.thumbsUp}</span>
+                                <span className={styles.voteNum}>{item.likes}</span>
                             </div>
                             <div style={{paddingRight: '6%'}}>
                                 <span onClick={() => user && setThumbsDown()}>
@@ -130,14 +133,14 @@ const RatingItem = ({item, course}) => {
                                         : <FiThumbsDown />
                                     }
                                 </span>
-                                <span className={styles.voteNum}>{item.thumbsDown}</span>
+                                <span className={styles.voteNum}>{item.dislikes}</span>
                             </div>
                         </div>
                     </Stack>
                     </div>
                 </div>
                 <div className="d-flex flex-column  justify-content-between align-items-end">
-                    <div className={styles.date}>Dec 1st, 2017</div>
+                        <div className={styles.date}>{item.updatedAt}</div>
                     {
                         user && !true &&
                         <div onClick={() => setReport()} className={styles.icon} style={{fontSize:'1.8rem'}}>

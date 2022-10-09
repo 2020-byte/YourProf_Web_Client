@@ -23,7 +23,6 @@ const InfoBox = ({item}) => {
         }
         navigate(`/profs/${item.id}/ratings`)
         window.scrollTo({ top: 0, behavior: "smooth" });
-
     }
 
     const [visible, toggleVisibility] = useToggle(false);

@@ -20,7 +20,13 @@ const Item = ({item}) => {
         const prevent = e.target.className.baseVal;
         if(prevent === 'bookmark-off' || prevent === 'bookmark-on' || prevent === '') return
         //배열 index까지 정확하게 붙여주는 거 까먹지 않기.
+
+        //왜 가끔씩 scrollTo가 안먹히는 지 알아보기.
+        //갑자기 scrollTo안해도 위로가네.
+        //Prof.jsx에서 profInfo 존재할 때만 InfoBox를 받아오기로 하니까
+        //window.scrollTo({ top: 0, behavior: "smooth" });
         navigate(`/profs/${item.id}`)
+        
     }
 
     const [visible, toggleVisibility] = useToggle(false);

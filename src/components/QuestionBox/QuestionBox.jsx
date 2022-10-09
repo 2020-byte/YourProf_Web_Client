@@ -9,31 +9,28 @@ import RadioItem from '../RadioItem/RadioItem';
 import ReviewBox from '../ReivewBox/ReviewBox';
 import { useParams, useSearchParams } from 'react-router-dom';
 
-const QuestionBox = ({question, handleClick, checkSelected, allDone}) => {
+const QuestionBox = ({question, handleClick, checkSelected, select, allDone}) => {
 
-    question.type === 'tos' && console.log(allDone);
-    const params = useParams();
-    const profId = params.profId;
 
-    const selectItems = 
-        question.value === "course" ? courses.filter(i => i.profId == profId):
-        question.value === "grade" ? grades:
-        undefined;
+
+    //TODO:데이터 가져오는데서 다 클라이언트에서 로딩 창 돌아가게 하는 거 만들기.
+    const selectItems = select && question.type === "select" ? select:undefined;
 
 
     const [selected, setSelected] = useState();
 
     useEffect(() => {
         
-        if(
-            question.value ==='course' ||
-            question.value === 'quality' ||
-            question.value === 'difficulty' ||
-            question.value === "WTCA" ||
-            question.value === "review"
-        ) {
-            checkSelected && checkSelected(question.value, selected);
-        }
+        // if(
+        //     question.value ==='course' ||
+        //     question.value === 'quality' ||
+        //     question.value === 'difficulty' ||
+        //     question.value === "WTCA" ||
+        //     question.value === "review"
+        // ) {
+        //     checkSelected && checkSelected(question.value, selected);
+        // }
+        checkSelected && checkSelected(question.value, selected);
     }, [selected])
 
 
@@ -65,6 +62,7 @@ const QuestionBox = ({question, handleClick, checkSelected, allDone}) => {
                         handleSelect={handleSelect}
                         selectedValue={selected}
                         setAll={false}
+                        setNA={question.value == "grade"? false: undefined}
                         setLabel={false}
                         setWidth="100%"
                         />

@@ -27,7 +27,10 @@ const Header = ({handleLogout, handleSignin, user}) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        const pathname = location.pathname.includes('/profs')? location.pathname: "/profs";
+        const pathname = 
+        location.pathname.includes('/profs')
+        && location.search.includes('?search')
+        ? location.pathname: "/profs";
         navigate(`${pathname}?search=${searchRef.current.value}`)
     };
 

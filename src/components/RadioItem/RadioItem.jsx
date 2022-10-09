@@ -39,16 +39,16 @@ const RadioItem = ({name, handleSelect}) => {
             <input
             className={styles.input}
             id="1"
-            value="Yes"
+            value={1}
             name={name}
             type="radio"
-            checked={selectedValue === "Yes"}
+            checked={selectedValue == 1}
             onChange={handleChange}
             onClick={handleChange}
             style=
             {{
-                backgroundColor:`${selectedValue === 'Yes'
-                || (isHover && answer === 'Yes') ? "lightgreen": "transparent"}`
+                backgroundColor:`${selectedValue == 1
+                || (isHover && answer == 1) ? "lightgreen": "transparent"}`
             }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -60,16 +60,16 @@ const RadioItem = ({name, handleSelect}) => {
             <input
             className={styles.input}
             id="2"
-            value="No"
+            value={0}
             name={name}
             type="radio"
-            checked={selectedValue === "No"}
+            checked={selectedValue == 0}
             onChange={handleChange}
             onClick={handleChange}
             style=
             {{
-                backgroundColor:`${selectedValue === 'No'
-                || (isHover && answer === 'No') ? "red": "transparent"}`
+                backgroundColor:`${selectedValue == 0
+                || (isHover && answer == 0) ? "red": "transparent"}`
             }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}

@@ -31,8 +31,7 @@ function App({dataService}) {
 
   const handleSignin = () => {
     signin();
-    navigate(-1);
-    //TODO: history back 같은 걸로 원래 있던데로 되돌아가게
+    navigate(-1);//뒤로가기
   }
 
 
@@ -47,6 +46,7 @@ function App({dataService}) {
               <Route path="/profs" element={<AllProfs dataService={dataService}/>} />
               <Route path="/profs/departments/:departmentId" element={<AllProfs dataService={dataService}/>} />
               <Route path="/profs/:profId" element={<Prof dataService={dataService}/>} />
+              <Route path="/profs/:profId/courses/:courseId" element={<Prof dataService={dataService}/>} />
               <Route path="/profs/:profId/ratings" element={<RateProf dataService={dataService}/>} />
               <Route path="/profs/:profId/ratings/:ratingId" element={<RateProf dataService={dataService}/>} />
               <Route path="/account/profile" element={<Profile dataService={dataService}/>} />
