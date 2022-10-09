@@ -21,8 +21,7 @@ const Prof = ({dataService}) => {
     const navigate = useNavigate();
     const params = useParams();
     const profId = params.profId;
-
-    const prof = profItems.find(i => i.id == profId);
+    const paramCourseId = params.courseId;
     
     const [error, onError] = useOnError('');
 
@@ -32,7 +31,26 @@ const Prof = ({dataService}) => {
 
     const [ratings, setRatings] = useState([]);
 
+    const [courseId, setCourseId] = useState();
+
+    const handleSelect = (courseId) => {
+        navigate(`/profs/${profId}/courses/${courseId}`);
+    }
+
+    //페이지 바뀔 때마다 paramCourseId없으면
+    //profInfo불러오면 default하게 다불러오고
+    //paramCourseId있으면 원래 courses제외하고 profInfo는 본래꺼 쓰고
+    //course만 따로 가져오는 거. (paramCurseId로 courseId바꿔서)
     useEffect(() => {
+        if(paramCourseId) {
+            setCourseId(paramCourseId);
+            return;
+        }
+
+        setCourseId(0); 
+        //select Id랑 연관되어 있기 때문에 setCourseId 설정하고
+        //course따로 불러올 때, paramCourseId없으면 따로 안불러오게 설정해서 이중으로 불러오는 거 막으면 됨.
+
         dataService
         .getProfInfo(profId)
         .then((profInfo) => {
@@ -42,21 +60,13 @@ const Prof = ({dataService}) => {
         })
         .catch(onError);
     
-    }, [dataService, profId]);
+    }, [dataService, profId, paramCourseId]);
 
 
-
-    // const courses = filterItembyId(profCourseItems, profId);
-    // // 현재 교수의 과목들
-
-    const [courseId, setCourseId] = useState();
-    const handleSelect = (courseId) => {
-        navigate(`/profs/${profId}/courses/${courseId}`);
-        setCourseId(courseId);
-        // 현재 과목 카테고리
-    }
-
+    //paramCourseId 없으면 profInfo로 default하게 course불러 올꺼기 때문에
+    //paramCourseId없는 경우는 course 따로 안불러옴.
     useEffect(() => {
+        if(!paramCourseId) return;
         dataService
         .getRatingsbyProfIdwithCourseId(profId, courseId)
         .then((ratings) => {
@@ -64,27 +74,6 @@ const Prof = ({dataService}) => {
         })
         .catch(onError);
     }, [dataService, courseId])
-
-
-    // const ratings = filterItembyId(ratingItems, profId);
-    // // 현재 교수의 레이팅들
-    
-
-    // const [filteredRatings, setFilteredRatings] = useState(ratings);
-    //초기값 안넣어주면 제일 처음 렌더할 때 렌더 안됨.
-
-    // //이건 그 다음 course가 바뀔 때마다 filteredRatings을 바꿔 주는 것.
-    // useEffect(() => {
-    //     course === "any" || course === undefined? setFilteredRatings(ratings):
-    //     setFilteredRatings(ratings.filter(i => i.courseId == courses.find(i => i.name === course).id));
-    //     // id == 'id'
-    //     // 나중에 JOIN으로 데이터베이스에서 바로 갖고 올 수 있도록
-    //     // 일단 prof으로 필터된 ratings을 가져오고 그걸 courses랑 JOIN하고
-    //     // course name 갖는 걸 불러오는 것(원래 id로 불러와야 맞는 것 같긴 한데)
-    // }, [course]);
-
-
-    
 
 
     return (
