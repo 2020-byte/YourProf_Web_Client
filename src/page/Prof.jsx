@@ -23,7 +23,8 @@ const Prof = ({dataService}) => {
     const profId = params.profId;
     const paramCourseId = params.courseId;
     
-    const [error, onError] = useOnError('');
+    const [error, setError] = useState('');
+    const [onError] = useOnError('');
 
     const [profInfo, setProfInfo] = useState();
     
@@ -37,17 +38,18 @@ const Prof = ({dataService}) => {
         navigate(`/profs/${profId}/courses/${courseId}`);
     }
 
-    //페이지 바뀔 때마다 paramCourseId없으면
-    //profInfo불러오면 default하게 다불러오고
-    //paramCourseId있으면 원래 courses제외하고 profInfo는 본래꺼 쓰고
-    //course만 따로 가져오는 거. (paramCurseId로 courseId바꿔서)
-    useEffect(() => {
-        if(paramCourseId) {
-            setCourseId(paramCourseId);
-            return;
-        }
 
-        setCourseId(0); 
+    //GET profInfo, Courses, Ratings
+
+    //제일 처음 불러올 때 paramCourseId없고
+    //profInfo불러오면 default하게 ratings 다 불러오고
+    //paramCourseId있으면 이걸로 courseId set(설정)하고
+    //이 courseId를 가지는 ratings만 새로 가져오는 것.
+
+    //(intial value) paramCourseId 없을 때.
+    useEffect(() => {
+
+        setCourseId(); 
         //select Id랑 연관되어 있기 때문에 setCourseId 설정하고
         //course따로 불러올 때, paramCourseId없으면 따로 안불러오게 설정해서 이중으로 불러오는 거 막으면 됨.
 
@@ -60,11 +62,16 @@ const Prof = ({dataService}) => {
         })
         .catch(onError);
     
-    }, [dataService, profId, paramCourseId]);
+    }, [dataService, profId]);
 
+    //paramCourseId 있을 때.
+    useEffect(() => {
+        setCourseId(paramCourseId);
+    }, [paramCourseId]);
 
-    //paramCourseId 없으면 profInfo로 default하게 course불러 올꺼기 때문에
-    //paramCourseId없는 경우는 course 따로 안불러옴.
+    //이렇게 2큐에 가는 이유가 select 카테고리 바꾸고 그 이후에 ratings불러오는 거임
+    //하고 싶은면 1큐에 paramCourseId 이용해서 select 카테고리 바꾸는 동시에
+    //ratings도 paramCourseId 이용해서 따로 불러오면 됨.
     useEffect(() => {
         if(!paramCourseId) return;
         dataService
@@ -74,6 +81,24 @@ const Prof = ({dataService}) => {
         })
         .catch(onError);
     }, [dataService, courseId])
+
+
+
+    //DELETE Rating
+    const onDelete = (ratingId) => {
+        // console.log(ratingId);
+        // return;
+        dataService
+        .deleteRating(profId, ratingId)
+        .then(() => setRatings(ratings.filter(rating =>  rating.id != ratingId)))
+        //이거 client에서 혼자서 이전에 받아온 배열을 setRatings으로 설정한 
+        //ratings에서 일단 삭제된 특정 rating을 
+        //setRatings(ratings.filter(rating =>  rating.id != ratingId))을 이용해서
+        //없앤 새로운 rating을 보여주는 거임.
+        //특정 rating이 삭제된 배열을 db에서 불러와서 그걸 setRatings해서 보여주는 게 아니라.
+        .catch((error) => setError(error.toString()));
+    }
+    
 
 
     return (
@@ -101,7 +126,12 @@ const Prof = ({dataService}) => {
             </div>
             <Stack gap={4}>
                 {ratings.map(item => (
-                    <RatingItem key={item.id} item={item} course={courses.find(i => i.id == item.courseId)}/>
+                    <RatingItem 
+                    key={item.id} 
+                    item={item} 
+                    course={courses.find(i => i.id == item.courseId)}
+                    onDelete={onDelete}
+                    />
                 ))}
             </Stack>
         </div>

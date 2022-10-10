@@ -35,7 +35,7 @@ const findRateInfo = (rate) => {
 }
 
 
-const RatingItem = ({item, course}) => {
+const RatingItem = ({item, course, onDelete}) => {
 
 
     const {user} = useAuth();
@@ -67,8 +67,9 @@ const RatingItem = ({item, course}) => {
 
 
     const handleDelete = () => {
+        
         if (window.confirm('Do you want to delete?')) {
-            
+            onDelete(item.id);
         }
     }
 
@@ -100,7 +101,7 @@ const RatingItem = ({item, course}) => {
                     <Stack gap={3} className="mt-3 ms-3">
                         {/* 간격 맞춰서 패딩 줘야 하면 <Stack direction="horizontal" gap={3}></Stack> 이거 쓰자. */}
                         <Stack className="ps-2" direction="horizontal" gap={3}>
-                            <div style={{fontWeight:'900'}}>{course.name}</div>
+                            {course && <div style={{fontWeight:'900'}}>{course.name}</div>}
                             <div className={styles.rateBox} style={{ backgroundColor: `${findRateInfo(item.quality)[1]}`}}>{findRateInfo(item.quality)[0]}</div>
                         </Stack>
                         <div className={styles.moreInfoBox}>

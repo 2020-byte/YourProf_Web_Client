@@ -19,11 +19,14 @@ const RateProf = ({dataService}) => {
 
     const params = useParams();
     const profId = params.profId;
-
+    const navigate = useNavigate();
     const [error, onError] = useOnError('');
+
 
     const [courses, setCourses] = useState([]);
 
+
+    //GET courses;
     useEffect(() => {
         dataService
         .getProfInfo(profId)
@@ -35,7 +38,7 @@ const RateProf = ({dataService}) => {
     }, [dataService, profId]);
 
 
-
+    //Rate하는 데 설정되야 하는 값.
     const [course, setCourse] = useState();
     const [quality, setQuality] = useState();
     const [difficulty, setDifficulty] = useState();
@@ -46,18 +49,16 @@ const RateProf = ({dataService}) => {
     const [grade, setGrade] = useState();
     const [review, setReview] = useState();
 
-
-
     const [allDone, setAllDone] = useState(false);
 
-
-    //WTCA 선택안해도 되도록 DB에 설정되어있음. 이거 설정하기.
+    //필수적으로 기입해야하는 거 다 기입해야지 버튼 클릭할 수 있도록.
     useEffect(() => {
         
         course !== undefined &&
         quality !== undefined &&
         difficulty !== undefined &&
         WTCA !== undefined &&
+        //TODO: WTCA 선택안해도 되도록 DB에 설정되어있음. 이거 설정하기.
         review !== undefined &&
         review !== ""?
         setAllDone(true): setAllDone(false);
@@ -65,7 +66,7 @@ const RateProf = ({dataService}) => {
 
 
 
-
+    //사용자가 설정한 값으로 세팅.
     const checkSelected = (value, selected) => {
         switch (value) {
             case 'course':
@@ -92,7 +93,7 @@ const RateProf = ({dataService}) => {
     }
 
 
-    const navigate = useNavigate();
+    //Rating Submit 버튼 클릭 시.
     const handleClick = () => {
         //requried를 쓰는 게 맞을까?
         if(!allDone) {
@@ -101,6 +102,7 @@ const RateProf = ({dataService}) => {
         } 
 
         console.log('button clicked');
+
         const ratingInfo = {
             courseId: parseInt(course), 
             quality: parseInt(quality), 
@@ -113,7 +115,8 @@ const RateProf = ({dataService}) => {
             review,
             profId: parseInt(profId),
         }
-        console.log(ratingInfo);
+
+        //서버에 사용자가 제출한 rating 저장.
         dataService
         .postRating(ratingInfo)
         .then()
