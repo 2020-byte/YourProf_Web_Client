@@ -44,8 +44,15 @@ export default class DataService {
         return data;
     }
 
+    async getRating(profId, ratingId) {
+        return  this.http.fetch(`/profs/${profId}/ratings/${ratingId}`, {    //url 앞에 /이거 빼먹지 않기.
+            method: 'GET',
+            headers: this.getHeaders(),
+        });
+        //return data안하고 위에꺼 const data = 만 그냥 복사 붙여넣기해서 data 왜 못가져오는 지 헤맸음.
+    }
+
     async postRating(ratingInfo) {
-        console.log(ratingInfo);
         return this.http.fetch(`/profs/${ratingInfo.profId}/ratings`, {
             method: 'POST',
             headers: this.getHeaders(),
@@ -61,8 +68,8 @@ export default class DataService {
         });
     }
 
-    async updateRating(ratingInfo) {
-        return this.http.fetch(`/prof/${ratingInfo.profId}/ratings/${ratingInfo.ratingId}`, {
+    async updateRating(ratingInfo, ratingId) {
+        return this.http.fetch(`/profS/${ratingInfo.profId}/ratings/${ratingId}`, {
             method: 'PUT',
             headers: this.getHeaders(),
             body: JSON.stringify({...ratingInfo }),

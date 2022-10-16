@@ -19,6 +19,7 @@ const RateProf = ({dataService}) => {
 
     const params = useParams();
     const profId = params.profId;
+    const ratingId = params.ratingId;
     const navigate = useNavigate();
     const [error, onError] = useOnError('');
 
@@ -28,7 +29,7 @@ const RateProf = ({dataService}) => {
 
     //GET courses;
     useEffect(() => {
-        dataService
+        !ratingId && dataService
         .getProfInfo(profId)
         .then((profInfo) => {
             setCourses([...profInfo.courses]);
@@ -36,6 +37,7 @@ const RateProf = ({dataService}) => {
         .catch(onError);
     
     }, [dataService, profId]);
+
 
 
     //Rate하는 데 설정되야 하는 값.
@@ -50,6 +52,23 @@ const RateProf = ({dataService}) => {
     const [review, setReview] = useState();
 
     const [allDone, setAllDone] = useState(false);
+
+    //Eit할 때
+    const [ratingInfo, setRatingInfo] = useState();
+    useEffect(() => {
+        ratingId &&
+        dataService
+        .getRating(profId, ratingId)
+        .then((ratingInfo) => {
+            setRatingInfo(ratingInfo);
+            setCourses([{id: ratingInfo.courseId, name: ratingInfo.coursename}]);
+        })
+        .catch(onError);
+    }, [dataService, ratingId]);
+
+
+
+
 
     //필수적으로 기입해야하는 거 다 기입해야지 버튼 클릭할 수 있도록.
     useEffect(() => {
@@ -117,10 +136,19 @@ const RateProf = ({dataService}) => {
         }
 
         //서버에 사용자가 제출한 rating 저장.
+        !ratingId && 
         dataService
         .postRating(ratingInfo)
         .then()
         .catch(onError);
+        
+
+        ratingId &&
+        dataService
+        .updateRating(ratingInfo, ratingId)
+        .then()
+        .catch(onError);
+
         navigate(-1);
         
     }
@@ -129,12 +157,14 @@ const RateProf = ({dataService}) => {
     return (
         <Stack gap={4}>
             {
+                (!ratingId || (ratingInfo)) &&
                 questions.map(i => (
                     <QuestionBox 
                     key={i.id} 
                     question={i} 
                     checkSelected={checkSelected}
                     select={i.value==="course"? courses: i.value==="grade"? grades: undefined}
+                    ratingInfo={ratingInfo}
                     />
                 ))
             }

@@ -9,15 +9,36 @@ import RadioItem from '../RadioItem/RadioItem';
 import ReviewBox from '../ReivewBox/ReviewBox';
 import { useParams, useSearchParams } from 'react-router-dom';
 
-const QuestionBox = ({question, handleClick, checkSelected, select, allDone}) => {
+const unbuttonStyle = {
+    backgroundColor: '#EDEDED',
+    boxShadow: 'rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset',
+    border: 'grey',
+    color: '#A4A3A3'
+}
+
+
+const QuestionBox = ({question, handleClick, checkSelected, select, allDone, ratingInfo}) => {
 
 
 
     //TODO:데이터 가져오는데서 다 클라이언트에서 로딩 창 돌아가게 하는 거 만들기.
     const selectItems = select && question.type === "select" ? select:undefined;
 
+    const init = ratingInfo && question.value !== "tos" &&
+    ratingInfo[`${
+        question.value === "course"? "courseId":
+        question.value === "grade"? "gradeId": 
+        question.value
+    }`];
+    const initData = 
+    init == null && init == undefined? init: 
+    init === true? "1":
+    init === false? "0":
+    init.toString();
 
-    const [selected, setSelected] = useState();
+    const [selected, setSelected] = useState(initData);
+
+
 
     useEffect(() => {
         
@@ -39,15 +60,10 @@ const QuestionBox = ({question, handleClick, checkSelected, select, allDone}) =>
         setSelected(selected);
     }
 
-    const unbuttonStyle = {
-        backgroundColor: '#EDEDED',
-        boxShadow: 'rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset',
-        border: 'grey',
-        color: '#A4A3A3'
-    }
+    
 
 
-
+    
     return (
         <div className={styles.body}>
             <div className={styles.question}>{question.value !== 'tos' && question.question}</div>
@@ -71,16 +87,18 @@ const QuestionBox = ({question, handleClick, checkSelected, select, allDone}) =>
                 {
                     question.type === 'rate' &&
                     <div>
-                        <RateBox handleSelect={handleSelect}/>
+                        <RateBox handleSelect={handleSelect} initialValue={selected}/>
                     </div>
                 }
                 {
                     question.type === 'radio' &&
-                    <RadioItem name={question.value} handleSelect={handleSelect} />
+                    <div>
+                        <RadioItem name={question.value} handleSelect={handleSelect} initialValue={selected}/>
+                    </div>
                 }
                 {
                     question.type === 'textarea' &&
-                    <ReviewBox name={question.value} handleSelect={handleSelect}/>
+                    <ReviewBox name={question.value} handleSelect={handleSelect} initialValue={selected}/>
                 }
                 {
                     question.value === 'tos' &&

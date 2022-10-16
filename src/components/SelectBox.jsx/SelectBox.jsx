@@ -7,6 +7,7 @@ import styles from './SelectBox.module.css';
 // TODO: 클릭했을 때 박스 열릴 때 깝빡이는 거 고쳐야함
 const SelectBox = ({name, id, items, handleSelect, selectedValue, setAll, setNA, setLabel, setWidth}) => {
 
+
     const All = setAll === undefined? true: setAll;
     const NA = setNA === undefined? true: setNA;
     const Label = setLabel === undefined? true: setLabel;
