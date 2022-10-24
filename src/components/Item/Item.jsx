@@ -60,7 +60,7 @@ const Item = ({item}) => {
                 </div>
                 <div>
                     <span className={styles.WTA}>
-                        <span style={{fontWeight: 'bolder', color:'rgba(0, 0, 0)'}} >{item.WTA} </span> 
+                        <span style={{fontWeight: 'bolder', color:'rgba(0, 0, 0)'}} >{item.WTA < 0? "N/A": item.WTA+"%"} </span> 
                         would take again
                     </span>
                     <span className={styles.verticalLine}> | </span>

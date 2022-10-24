@@ -6,6 +6,7 @@ import QuestionBox from '../components/QuestionBox/QuestionBox';
 import questions from '../data/question.json';
 import useOnError from '../hook/useOnError';
 import grades from '../data/grades.json';
+import { useAuth } from '../context/AuthContent';
 
 const TOS = {
     'value': 'tos',
@@ -17,11 +18,19 @@ const TOS = {
 
 const RateProf = ({dataService}) => {
 
+    
+
+
     const params = useParams();
     const profId = params.profId;
     const ratingId = params.ratingId;
     const navigate = useNavigate();
     const [error, onError] = useOnError('');
+
+    const auth = useAuth().user;
+    useEffect(() => {
+        !auth && navigate('/');
+    }, [auth])
 
 
     const [courses, setCourses] = useState([]);

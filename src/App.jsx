@@ -9,18 +9,19 @@ import Bookmark from './page/Bookmark';
 import Profile from './page/Profile';
 import { useAuth } from './context/AuthContent';
 import Login from './page/Login';
+import { useEffect } from 'react';
 
 function App({dataService}) {
 
   const navigate = useNavigate();
 
 
-  const { user, logout, signin } = useAuth();
+  const { user, logout, signup, signin } = useAuth();
 
   const handleLogout = () => {
     if (window.confirm('Do you want to log out?')) {
       logout();
-      // navigate('/');
+      //navigate('/');
       //TODO: 로그인 없이 있을 수 없는 곳 ME로 빠져나오게
     }
   };
@@ -29,9 +30,14 @@ function App({dataService}) {
     navigate('/login');
   }
 
-  const handleSignin = () => {
-    signin();
-    navigate(-1);//뒤로가기
+  const handleSignup = (username, password, name, email) => {
+    signup(username, password, name, email);
+    //navigate(-1);//뒤로가기
+  }
+
+  const handleSignin = (username, password) => {
+    signin(username, password);
+    //navigate(-1);//뒤로가기
   }
 
 
@@ -51,7 +57,7 @@ function App({dataService}) {
               <Route path="/profs/:profId/ratings/:ratingId" element={<RateProf dataService={dataService}/>} />
               <Route path="/account/profile" element={<Profile dataService={dataService}/>} />
               <Route path="/account/bookmark" element={<Bookmark dataService={dataService}/>} />
-              <Route path="/login" element={<Login onLogin={handleSignin} onSignUp={handleSignin} />} />
+              <Route path="/login" element={<Login onLogin={handleSignin} onSignUp={handleSignup} />} />
             </Routes>
             
           </div>

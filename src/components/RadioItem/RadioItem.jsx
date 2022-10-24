@@ -11,7 +11,6 @@ const RadioItem = ({name, handleSelect, initialValue}) => {
     //initialValue === true? 1: initialValue === false? 0: initialValue 이렇게 햇을 때,
     //왜 이 component밖에서 0이 나오는 지 이해가 안되네
     //그거 알아보기
-    console.log(initialValue);
     const [selectedValue, setSelectedValue] = useState(initialValue);
     
     const handleChange = (e) => {

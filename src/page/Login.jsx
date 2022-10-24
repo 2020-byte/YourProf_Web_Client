@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Form, Stack } from 'react-bootstrap';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContent';
 
 
 const bodyStyle = {
@@ -11,6 +13,11 @@ const bodyStyle = {
 
 
 const Login = ({onSignUp, onLogin}) => {
+    const {user} = useAuth();
+    const navigate = useNavigate();
+    useEffect(() => {
+        user && navigate("/");
+    }, [user]);
 
     const [signup, setSignup] = useState(false);
     const [username, setUsername] = useState('');

@@ -59,7 +59,7 @@ const InfoBox = ({item}) => {
                     </div>
                     <div className={styles.numericInfoBox}>
                         <div className={styles.numericInfoItem}>
-                            <div style={{fontSize: '3rem', fontWeight: '800'}}>{item.WTA}</div>
+                            <div style={{fontSize: '3rem', fontWeight: '800'}}>{item.WTA < 0? "N/A": item.WTA+"%"}</div>
                             <p>Would take again</p>
                         </div>
                         <div className={styles.numericInfoItem} style={{border:'none'}}>

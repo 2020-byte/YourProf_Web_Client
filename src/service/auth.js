@@ -15,6 +15,7 @@ export default class AuthService {
             }),
         });
         this.tokenStorage.saveToken(data.token);
+        console.log(data);
         return data;
     }
 

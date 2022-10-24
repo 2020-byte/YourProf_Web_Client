@@ -1,10 +1,7 @@
-import { createRef, useContext, useState } from "react";
+import { createRef, useCallback, useContext, useEffect, useImperativeHandle, useState } from "react";
 import { useMemo } from "react";
-import { useEffect } from "react";
 import { createContext } from "react";
-import { useNavigate } from "react-router-dom";
-import Header from "../components/Header/Header";
-import Home from "../page/Home";
+
 
 
 
@@ -13,24 +10,43 @@ const AuthContext = createContext({});
 const contextRef = createRef();
 
 export function AuthProvider({authService, authErrorEventBus, children}) {
-    const [user, setUser] = useState(false);
+    
+    const [user, setUser] = useState(undefined);
 
-    const logout = () => {
-        setUser(false);
-    };
+    useImperativeHandle(contextRef, () => (user ? user.token : undefined));
 
-    const signin = () => {
-        setUser(true);
-    }
+    useEffect(() => {
+        authService.me().then(setUser).catch(console.error);
+    }, [authService]);
+
+    const logout = useCallback(
+        async () => authService.logout().then(() => setUser(undefined)),
+        [authService]
+    );
+
+    const signin = useCallback(
+        async (username, password) =>
+            authService.login(username, password).then((user) => setUser(user)),
+        [authService]
+    );
+
+    const signup = useCallback(
+        async (username, password, name, email) =>
+            authService
+            .signup(username, password, name, email)
+            .then((user) => setUser(user)),
+        [authService]
+    );
 
 
     const context = useMemo(
         () => ({
         user,
         signin,
+        signup,
         logout,
     }),
-    [user, logout, signin]
+    [user, logout, signup, signin]
     );
 
 
@@ -52,5 +68,6 @@ export class AuthErrorEventBus {
 }
 
 export default AuthContext;
+export const fetchToken = () => contextRef.current;
 export const useAuth = () => useContext(AuthContext);
 
