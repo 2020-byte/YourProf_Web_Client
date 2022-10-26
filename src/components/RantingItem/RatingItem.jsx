@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Stack } from 'react-bootstrap';
 import  {FiThumbsUp, FiThumbsDown} from 'react-icons/fi';
 import  {HiThumbUp, HiThumbDown} from 'react-icons/hi';
@@ -39,6 +39,11 @@ const RatingItem = ({item, course, onDelete}) => {
 
 
     const {user} = useAuth();
+    const[auth, setAuth] = useState(user&& user.userId == item.userId);
+    useEffect(() => {
+        console.log(auth);
+    }, [auth])
+
     
 
     const qualityColor = chooseQualityColor(item.quality);
@@ -153,7 +158,7 @@ const RatingItem = ({item, course, onDelete}) => {
                     }
                     {
                         user && true && //TODO: current user가 쓴 건지 매치할 수 있도록 해야함.
-                        <div className={styles.fixBox} >
+                        <div className={styles.fixBox} style={{display: !auth && "none"}} >
                             <div className={styles.icon} onClick={handleEdit}>
                                 <BiEdit />
                             </div>

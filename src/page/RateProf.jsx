@@ -27,11 +27,6 @@ const RateProf = ({dataService}) => {
     const navigate = useNavigate();
     const [error, onError] = useOnError('');
 
-    const auth = useAuth().user;
-    useEffect(() => {
-        !auth && navigate('/');
-    }, [auth])
-
 
     const [courses, setCourses] = useState([]);
 

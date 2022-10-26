@@ -16,10 +16,6 @@ const Profile = (props) => {
 
 
     const navigate = useNavigate();
-    const auth = useAuth().user;
-    useEffect(() => {
-        !auth && navigate('/');
-    }, [auth])
 
 
     const user = users.find(i => i.id == 1);
@@ -34,14 +30,14 @@ const Profile = (props) => {
             {
                 id: "2",
                 numItem: user.upVotes.length,
-                title: "My Up Votes",
-                value: "upVotes"
+                title: "My Likes",
+                value: "likes"
             },
             {
                 id: "3",
                 numItem: user.downVotes.length,
-                title: "My Down Votes",
-                value: "downVotes"
+                title: "My DisLikes",
+                value: "dislikes"
             }
         ]
     )
@@ -49,6 +45,7 @@ const Profile = (props) => {
     const [curItemId, setCurItemId] = useState("1");
     const handleClick = (id) => {
         setCurItemId(id);
+        navigate(`/account/profile/${info[id-1].value}`);
     }
 
     const [items, setItems] = useState(ratingItems.filter(i => user.reviews.includes(i.id)))
@@ -101,11 +98,11 @@ const Profile = (props) => {
             handleSelect={handleSelectCourse}
             selectedValue={course}
             />
-            <Stack gap={4}>
+            {/* <Stack gap={4}>
                 {items.map(item => (
                     <RatingItem key={item.id} item={item} course={profCourseItems.find(i => i.id == item.courseId)}/>
                 ))}
-            </Stack>
+            </Stack> */}
         </div>
     )
 }

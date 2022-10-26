@@ -1,4 +1,4 @@
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import {Routes, Route, useNavigate, Router} from 'react-router-dom';
 import Home from './page/Home';
 import AllProfs from './page/AllProfs';
 import Prof from './page/Prof';
@@ -56,6 +56,9 @@ function App({dataService}) {
               <Route path="/profs/:profId/ratings" element={<RateProf dataService={dataService}/>} />
               <Route path="/profs/:profId/ratings/:ratingId" element={<RateProf dataService={dataService}/>} />
               <Route path="/account/profile" element={<Profile dataService={dataService}/>} />
+              <Route path="/account/profile/reviews" element={<Profile dataService={dataService}/>} />
+              <Route path="/account/profile/likes" element={<Profile dataService={dataService}/>} />
+              <Route path="/account/profile/dislikes" element={<Profile dataService={dataService}/>} />
               <Route path="/account/bookmark" element={<Bookmark dataService={dataService}/>} />
               <Route path="/login" element={<Login onLogin={handleSignin} onSignUp={handleSignup} />} />
             </Routes>
