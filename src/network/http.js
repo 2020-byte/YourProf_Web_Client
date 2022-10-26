@@ -4,6 +4,10 @@ export default class HttpClient {
         this.authErrorEventBus = authErrorEventBus;
     }
 
+    // async hello(name) {
+    //     console.log(name);
+    // }
+
     async fetch(url, options) {
         const res = await fetch(`${this.baseURL}${url}`, {
             ...options,
@@ -12,6 +16,7 @@ export default class HttpClient {
                 ...options.headers,
             },
         });
+
 
         let data;
         try {

@@ -9,6 +9,7 @@ import TokenStorage from './db/token';
 import HttpClient from './network/http';
 import DataService from './service/data';
 import AuthService from './service/auth';
+import AccountService from './service/account';
 
 
 const baseURL = process.env.REACT_APP_BASE_URL;
@@ -17,6 +18,7 @@ const authErrorEventBus = new AuthErrorEventBus();
 const httpClient = new HttpClient(baseURL, authErrorEventBus);
 const authService = new AuthService(httpClient, tokenStorage);
 const dataService = new DataService(httpClient, tokenStorage);
+const accountService = new AccountService(httpClient, tokenStorage);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -26,7 +28,7 @@ root.render(
       authErrorEventBus={authErrorEventBus}
     >
     <BrowserRouter>
-      <App dataService={dataService} />
+      <App dataService={dataService} accountService={accountService}/>
     </BrowserRouter>
     </AuthProvider>
   </React.StrictMode>

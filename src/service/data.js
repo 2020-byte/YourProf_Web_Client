@@ -86,4 +86,14 @@ export default class DataService {
     // onSync(callback) {
     //     return this.socket.onSync(, callback);
     // }
+
+    async getUserInfo() {
+        const data =  this.http.fetch(`/account/profile`, {
+            method: 'GET',
+            headers: this.getHeaders(),
+        });
+        return data;
+    }
+
+
 }

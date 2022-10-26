@@ -1,8 +1,9 @@
 import React, { useReducer } from 'react';
 import styles from './ProfileBox.module.css';
 
-const ProfileBox = ({user}) => {
+const ProfileBox = ({userInfo}) => {
 
+    console.log(userInfo);
     return (
         <div className={styles.box}>
             <table>
@@ -12,7 +13,7 @@ const ProfileBox = ({user}) => {
                         My Email:
                     </td>
                     <td className="py-2">
-                        {user.email}
+                        {userInfo.email}
                     </td>
                 </tr>
                 <tr className={styles.tr}>
@@ -20,7 +21,7 @@ const ProfileBox = ({user}) => {
                         The Number of Reviews:
                     </td>
                     <td className="py-2">
-                        {user.reviews.length}
+
                     </td>
                 </tr>
             </tbody>

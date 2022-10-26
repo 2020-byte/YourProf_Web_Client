@@ -10,32 +10,52 @@ import profCourseItems from '../data/profCourseItems.json';
 import RatingItem from '../components/RantingItem/RatingItem';
 import { Stack } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import useOnError from '../hook/useOnError';
 import { useAuth } from '../context/AuthContent';
 
-const Profile = (props) => {
+const Profile = ({accountService, dataService}) => {
+
+    
 
 
     const navigate = useNavigate();
+    //const {user} = useAuth();   //iterator {} not []
+    const [error, onError] = useOnError('');
 
+    const [userInfo, setUserInfo] = useState();
+    
+    useEffect(() => {
+        dataService
+        .getUserInfo()
+        .then((userInfo) => setUserInfo(userInfo))
+        .catch(onError);
+    }, [dataService]);
+    // useEffect(() => {
+    //     accountService
+    //     .getUserInfo()
+    //     .then((userInfo) => console.log(userInfo))
+    //     .catch(onError);
+    // }, [accountService]);
 
-    const user = users.find(i => i.id == 1);
+    
+
     const [info, setInfo] = useState(
         [
             {
                 id: "1",
-                numItem: user.reviews.length,
+                numItem: 3,//userInfo.reviews.length,
                 title: "My Reviews",
                 value: "reviews"
             },
             {
                 id: "2",
-                numItem: user.upVotes.length,
+                numItem: 2,//userInfo.upVotes.length,
                 title: "My Likes",
                 value: "likes"
             },
             {
                 id: "3",
-                numItem: user.downVotes.length,
+                numItem: 2,//userInfo.downVotes.length,
                 title: "My DisLikes",
                 value: "dislikes"
             }
@@ -48,7 +68,7 @@ const Profile = (props) => {
         navigate(`/account/profile/${info[id-1].value}`);
     }
 
-    const [items, setItems] = useState(ratingItems.filter(i => user.reviews.includes(i.id)))
+    const [items, setItems] = useState()
     
     //TODO: filterItems만들어서 department나 course 선택할 때마다 filter된 item이 나올 수 있도록 해야함.
 
@@ -61,16 +81,16 @@ const Profile = (props) => {
         setDepartment(dep);
     }
 
-    const [courses, setCourses] = useState(profCourseItems.filter(i => items.map(i => i.courseId).includes(`${i.id}`)));
+    const [courses, setCourses] = useState(profCourseItems);
 
     useEffect(() => {
         const valueName = info.find(i => i.id == curItemId).value;
-        setItems(ratingItems.filter(i => user[valueName].includes(i.id)));
+        setItems();
     }, [curItemId]);
 
     useEffect(() => {
         setDepartments(depItems);
-        setCourses(profCourseItems.filter(i => items.map(i => i.courseId).includes(`${i.id}`)))
+        setCourses(profCourseItems)
     }, [items])
 
     const [course, setCourse] = useState();
@@ -82,7 +102,7 @@ const Profile = (props) => {
 
     return (
         <div>
-            <ProfileBox user={user}/>
+            {userInfo && <ProfileBox userInfo={userInfo}/>}
             <SearchTab info={info} handleClick={handleClick}/>
             <SelectBox 
             name="department" 

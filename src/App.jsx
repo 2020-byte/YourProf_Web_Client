@@ -11,7 +11,7 @@ import { useAuth } from './context/AuthContent';
 import Login from './page/Login';
 import { useEffect } from 'react';
 
-function App({dataService}) {
+function App({dataService, accountService}) {
 
   const navigate = useNavigate();
 
@@ -55,11 +55,13 @@ function App({dataService}) {
               <Route path="/profs/:profId/courses/:courseId" element={<Prof dataService={dataService}/>} />
               <Route path="/profs/:profId/ratings" element={<RateProf dataService={dataService}/>} />
               <Route path="/profs/:profId/ratings/:ratingId" element={<RateProf dataService={dataService}/>} />
-              <Route path="/account/profile" element={<Profile dataService={dataService}/>} />
-              <Route path="/account/profile/reviews" element={<Profile dataService={dataService}/>} />
-              <Route path="/account/profile/likes" element={<Profile dataService={dataService}/>} />
-              <Route path="/account/profile/dislikes" element={<Profile dataService={dataService}/>} />
-              <Route path="/account/bookmark" element={<Bookmark dataService={dataService}/>} />
+              
+              <Route path="/account/profile" element={<Profile dataService={dataService} accountService={accountService}/>} />
+              <Route path="/account/profile/reviews" element={<Profile dataService={dataService} accountService={accountService}/>} />
+              <Route path="/account/profile/likes" element={<Profile dataService={dataService} accountService={accountService}/>} />
+              <Route path="/account/profile/dislikes" element={<Profile dataService={dataService} accountService={accountService}/>} />
+              <Route path="/account/bookmark" element={<Bookmark dataService={dataService} accountService={accountService}/>} />
+              
               <Route path="/login" element={<Login onLogin={handleSignin} onSignUp={handleSignup} />} />
             </Routes>
             
