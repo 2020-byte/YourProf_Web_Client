@@ -21,8 +21,10 @@ const SearchTab = ({info, handleClick, selectedValue}) => {
     }
 
     useEffect(() => {
-        const curItem = info.find(i => i.id == selectedValue);
-        setCurValue(curItem.value);
+        if(selectedValue) {
+            const curItem = info.find(i => i.id == selectedValue);
+            setCurValue(curItem.value);
+        }
     },[selectedValue])
 
 
