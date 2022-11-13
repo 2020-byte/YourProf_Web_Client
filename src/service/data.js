@@ -96,13 +96,31 @@ export default class DataService {
     }
 
     async getUserRatings(depId) {
-        console.log(depId);
-        const data =  this.http.fetch(`/account/profile/reviews/${depId}`, {
+        //undefined을 string으로 전달안하려면 undefined 일 때, 저렇게 ''으로 보내야 함.
+        const query = depId && depId !="0"? `${depId}` : '';
+        const data =  this.http.fetch(`/account/profile/reviews/${query}`, {
             method: 'GET',
             headers: this.getHeaders(),
         });
         return data;
     }
 
+    async getLikedRatings(depId) {
+        const query = depId && depId !="0"? `${depId}` : '';
+        const data =  this.http.fetch(`/account/profile/likes/${query}`, {
+            method: 'GET',
+            headers: this.getHeaders(),
+        });
+        return data;
+    }
+
+    async getDisLikedRatings(depId) {
+        const query = depId && depId !="0"? `${depId}` : '';
+        const data =  this.http.fetch(`/account/profile/dislikes/${query}`, {
+            method: 'GET',
+            headers: this.getHeaders(),
+        });
+        return data;
+    }
 
 }

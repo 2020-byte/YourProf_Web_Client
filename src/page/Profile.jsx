@@ -9,7 +9,7 @@ import ratingItems from '../data/ratingItems.json';
 import profCourseItems from '../data/profCourseItems.json';
 import RatingItem from '../components/RantingItem/RatingItem';
 import { Stack } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import useOnError from '../hook/useOnError';
 import { useAuth } from '../context/AuthContent';
 
@@ -21,6 +21,8 @@ const Profile = ({accountService, dataService}) => {
     const navigate = useNavigate();
     //const {user} = useAuth();   //iterator {} not []
     const [error, onError] = useOnError('');
+    const locationHook = useLocation();
+    const params = useParams();
 
     
 
@@ -52,10 +54,23 @@ const Profile = ({accountService, dataService}) => {
     const [curItemId, setCurItemId] = useState("1");
     const handleClick = (id) => {
         setCurItemId(id);
-        navigate(`/account/profile/${info[id-1].value}`);
+        const curItem = info.find(i => i.id == id);
+        navigate(`/account/profile/${curItem.value}`);
     }
 
-    const [items, setItems] = useState()
+    useEffect(() => {
+        const splitUrl = locationHook?.pathname?.split('/') ?? null;
+        const location =
+            splitUrl?.length > 1 ? splitUrl[3] : null;
+        
+        console.log(location);
+
+        const curId = location === undefined? 1: info.find(i => i.value == location).id;
+        console.log(curId);
+        curItemId != curId && setCurItemId(curId);
+
+    }, [locationHook]);
+
     
     //TODO: filterItems만들어서 department나 course 선택할 때마다 filter된 item이 나올 수 있도록 해야함.
 
@@ -63,21 +78,28 @@ const Profile = ({accountService, dataService}) => {
     //TODO: departments도 user가 가진 item에 따라 변경되고 제한되게 setDepartments도 유동적으로 설정되도록,
     // 데이터베이스를 작성하자.
     const [departments, setDepartments] = useState(depItems);
+    
 
     const [department, setDepartment] = useState();
+    useEffect(() => {
+        setDepartment(params.departmentId);
+    }, [params]);
+
+
     const handleSelectDep = (dep) => {
         setDepartment(dep);
-        navigate(`/account/profile/reviews/${dep}`);
+        navigate(`/account/profile/${info.find(i => i.id == curItemId).value}/${dep}`);
     }
 
 
     const [userInfo, setUserInfo] = useState();
     const [reviews, setReviews] = useState();
-    useEffect(() => {
-        console.log(reviews);
-    }, [reviews])
+    const [likedRatings, setLikedRatings] = useState();
+    const [disLikedRatings, setDisLikedRatings] = useState();
+
     
     useEffect(() => {
+        //TODO:카테고리 따른 거 일 땐 업데이트 안되게.
         dataService
         .getUserInfo()
         .then((userInfo) => setUserInfo(userInfo))
@@ -94,6 +116,20 @@ const Profile = ({accountService, dataService}) => {
     //     .then((userInfo) => console.log(userInfo))
     //     .catch(onError);
     // }, [accountService]);
+
+    useEffect(() => {
+        dataService
+        .getLikedRatings(department)
+        .then((i) => setLikedRatings(i))
+        .catch(onError);
+    }, [dataService, department]);
+
+    useEffect(() => {
+        dataService
+        .getDisLikedRatings(department)
+        .then((i) => setDisLikedRatings(i))
+        .catch(onError);
+    }, [dataService, department]);
 
 
 
@@ -129,7 +165,7 @@ const Profile = ({accountService, dataService}) => {
     return (
         <div>
             {userInfo && <ProfileBox userInfo={userInfo}/>}
-            <SearchTab info={info} handleClick={handleClick}/>
+            <SearchTab info={info} handleClick={handleClick} selectedValue={curItemId} />
             <SelectBox 
             name="department" 
             id="department-select" 
@@ -145,8 +181,25 @@ const Profile = ({accountService, dataService}) => {
             selectedValue={course}
             /> */}
             {
-                reviews && <Stack gap={4}>
+                info[curItemId-1].value == 'reviews' && reviews && 
+                <Stack gap={4}>
                 {reviews.map(item => (
+                    <RatingItem key={item.id} item={item} course={profCourseItems.find(i => i.id == item.courseId)}/>
+                ))}
+                </Stack>
+            }
+            {
+                info[curItemId-1].value == 'likes' && likedRatings && 
+                <Stack gap={4}>
+                {likedRatings.map(item => (
+                    <RatingItem key={item.id} item={item} course={profCourseItems.find(i => i.id == item.courseId)}/>
+                ))}
+                </Stack>
+            }
+            {
+                info[curItemId-1].value == 'dislikes' && disLikedRatings && 
+                <Stack gap={4}>
+                {disLikedRatings.map(item => (
                     <RatingItem key={item.id} item={item} course={profCourseItems.find(i => i.id == item.courseId)}/>
                 ))}
                 </Stack>

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import styles from './SearchTab.module.css';
 
-const SearchTab = ({info, handleClick}) => {
+const SearchTab = ({info, handleClick, selectedValue}) => {
 
+    console.log(selectedValue);
     const [curValue, setCurValue] = useState(info[0].value);
     
     const onClick = (e) => {
@@ -15,9 +17,16 @@ const SearchTab = ({info, handleClick}) => {
             curItem.active == true
         ) return;
 
-        console.log(e.target.id);
         handleClick && handleClick(e.target.id);
     }
+
+    useEffect(() => {
+        const curItem = info.find(i => i.id == selectedValue);
+        setCurValue(curItem.value);
+    },[selectedValue])
+
+
+
 
     return (
         <ul className={styles.ulBox}>
