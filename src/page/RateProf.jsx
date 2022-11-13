@@ -18,13 +18,19 @@ const TOS = {
 
 const RateProf = ({dataService}) => {
 
+    const navigate = useNavigate();
+    const auth = useAuth().user;
+    useEffect(() => {
+        !auth && navigate('/');
+    }, [auth, navigate])
+    
+
     
 
 
     const params = useParams();
     const profId = params.profId;
     const ratingId = params.ratingId;
-    const navigate = useNavigate();
     const [error, onError] = useOnError('');
 
 
@@ -158,6 +164,7 @@ const RateProf = ({dataService}) => {
     }
 
 
+    if(!auth) return;
     return (
         <Stack gap={4}>
             {

@@ -15,14 +15,23 @@ import { useAuth } from '../context/AuthContent';
 
 const Profile = ({accountService, dataService}) => {
 
+
     
-
-
     const navigate = useNavigate();
+    const auth = useAuth().user;
+    useEffect(() => {
+        !auth && navigate('/');
+    }, [auth, navigate])
+
+
+    
     //const {user} = useAuth();   //iterator {} not []
     const [error, onError] = useOnError('');
     const locationHook = useLocation();
     const params = useParams();
+    
+    
+    
 
     
 
@@ -81,15 +90,16 @@ const Profile = ({accountService, dataService}) => {
     
 
     const [department, setDepartment] = useState();
+
+    //TODO:dep을 param으로 받아와야지 자연스럽네.(해결됨)
+    const handleSelectDep = (dep) => {
+        //setDepartment(dep);
+        navigate(`/account/profile/${info.find(i => i.id == curItemId).value}/${dep}`);
+    }
+
     useEffect(() => {
         setDepartment(params.departmentId);
     }, [params]);
-
-
-    const handleSelectDep = (dep) => {
-        setDepartment(dep);
-        navigate(`/account/profile/${info.find(i => i.id == curItemId).value}/${dep}`);
-    }
 
 
     const [userInfo, setUserInfo] = useState();
@@ -162,6 +172,7 @@ const Profile = ({accountService, dataService}) => {
     // }
 
 
+    if(!auth) return;
     return (
         <div>
             {userInfo && <ProfileBox userInfo={userInfo}/>}

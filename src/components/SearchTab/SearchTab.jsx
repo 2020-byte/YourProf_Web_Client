@@ -4,7 +4,7 @@ import styles from './SearchTab.module.css';
 
 const SearchTab = ({info, handleClick, selectedValue}) => {
 
-    console.log(selectedValue);
+    
     const [curValue, setCurValue] = useState(info[0].value);
     
     const onClick = (e) => {

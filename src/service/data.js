@@ -123,4 +123,13 @@ export default class DataService {
         return data;
     }
 
+    async getBookmark(depId) {
+        const query = depId && depId !="0"? `${depId}` : '';
+        const data =  this.http.fetch(`/account/bookmark/${query}`, {
+            method: 'GET',
+            headers: this.getHeaders(),
+        });
+        return data;
+    }
+
 }

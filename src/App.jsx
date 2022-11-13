@@ -64,7 +64,8 @@ function App({dataService, accountService}) {
               <Route path="/account/profile/dislikes" element={<Profile dataService={dataService} accountService={accountService}/>} />
               <Route path="/account/profile/dislikes/:departmentId" element={<Profile dataService={dataService} accountService={accountService}/>} />
               <Route path="/account/bookmark" element={<Bookmark dataService={dataService} accountService={accountService}/>} />
-              
+              <Route path="/account/bookmark/:departmentId" element={<Bookmark dataService={dataService} accountService={accountService}/>} />
+
               <Route path="/login" element={<Login onLogin={handleSignin} onSignUp={handleSignup} />} />
             </Routes>
             
