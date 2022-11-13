@@ -7,7 +7,7 @@ const SearchTab = ({info, handleClick}) => {
     
     const onClick = (e) => {
 
-        console.log(e.target.id);
+        
         const curItem = info.find(i => i.id == e.target.id);
         setCurValue(curItem.value);
 
@@ -15,6 +15,7 @@ const SearchTab = ({info, handleClick}) => {
             curItem.active == true
         ) return;
 
+        console.log(e.target.id);
         handleClick && handleClick(e.target.id);
     }
 

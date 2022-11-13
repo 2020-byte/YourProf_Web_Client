@@ -3,11 +3,18 @@ import styles from './ProfileBox.module.css';
 
 const ProfileBox = ({userInfo}) => {
 
-    console.log(userInfo);
     return (
         <div className={styles.box}>
             <table>
             <tbody>
+                <tr className={styles.tr}>
+                    <td className="py-2">
+                        Username:
+                    </td>
+                    <td className="py-2">
+                        {userInfo.username}
+                    </td>
+                </tr>
                 <tr className={styles.tr}>
                     <td className="py-2">
                         My Email:
@@ -18,10 +25,10 @@ const ProfileBox = ({userInfo}) => {
                 </tr>
                 <tr className={styles.tr}>
                     <td className="py-2">
-                        The Number of Reviews:
+                        Name:
                     </td>
                     <td className="py-2">
-
+                        {userInfo.name}
                     </td>
                 </tr>
             </tbody>

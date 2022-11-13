@@ -95,5 +95,14 @@ export default class DataService {
         return data;
     }
 
+    async getUserRatings(depId) {
+        console.log(depId);
+        const data =  this.http.fetch(`/account/profile/reviews/${depId}`, {
+            method: 'GET',
+            headers: this.getHeaders(),
+        });
+        return data;
+    }
+
 
 }

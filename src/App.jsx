@@ -57,7 +57,8 @@ function App({dataService, accountService}) {
               <Route path="/profs/:profId/ratings/:ratingId" element={<RateProf dataService={dataService}/>} />
               
               <Route path="/account/profile" element={<Profile dataService={dataService} accountService={accountService}/>} />
-              <Route path="/account/profile/reviews" element={<Profile dataService={dataService} accountService={accountService}/>} />
+              <Route path="/account/profile/reviews/" element={<Profile dataService={dataService} accountService={accountService}/>} />
+              <Route path="/account/profile/reviews/:departmentId" element={<Profile dataService={dataService} accountService={accountService}/>} />
               <Route path="/account/profile/likes" element={<Profile dataService={dataService} accountService={accountService}/>} />
               <Route path="/account/profile/dislikes" element={<Profile dataService={dataService} accountService={accountService}/>} />
               <Route path="/account/bookmark" element={<Bookmark dataService={dataService} accountService={accountService}/>} />

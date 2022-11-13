@@ -22,20 +22,7 @@ const Profile = ({accountService, dataService}) => {
     //const {user} = useAuth();   //iterator {} not []
     const [error, onError] = useOnError('');
 
-    const [userInfo, setUserInfo] = useState();
     
-    useEffect(() => {
-        dataService
-        .getUserInfo()
-        .then((userInfo) => setUserInfo(userInfo))
-        .catch(onError);
-    }, [dataService]);
-    // useEffect(() => {
-    //     accountService
-    //     .getUserInfo()
-    //     .then((userInfo) => console.log(userInfo))
-    //     .catch(onError);
-    // }, [accountService]);
 
     
 
@@ -76,28 +63,67 @@ const Profile = ({accountService, dataService}) => {
     //TODO: departments도 user가 가진 item에 따라 변경되고 제한되게 setDepartments도 유동적으로 설정되도록,
     // 데이터베이스를 작성하자.
     const [departments, setDepartments] = useState(depItems);
+
     const [department, setDepartment] = useState();
     const handleSelectDep = (dep) => {
         setDepartment(dep);
+        navigate(`/account/profile/reviews/${dep}`);
     }
 
-    const [courses, setCourses] = useState(profCourseItems);
 
+    const [userInfo, setUserInfo] = useState();
+    const [reviews, setReviews] = useState();
     useEffect(() => {
-        const valueName = info.find(i => i.id == curItemId).value;
-        setItems();
-    }, [curItemId]);
-
+        console.log(reviews);
+    }, [reviews])
+    
     useEffect(() => {
-        setDepartments(depItems);
-        setCourses(profCourseItems)
-    }, [items])
+        dataService
+        .getUserInfo()
+        .then((userInfo) => setUserInfo(userInfo))
+        .catch(onError);
 
-    const [course, setCourse] = useState();
-    const handleSelectCourse = (course) => {
-        setCourse(course);
-        // 현재 과목 카테고리
-    }
+        dataService
+        .getUserRatings(department)
+        .then((i) => setReviews(i))
+        .catch(onError);
+    }, [dataService, department]);
+    // useEffect(() => {
+    //     accountService
+    //     .getUserInfo()
+    //     .then((userInfo) => console.log(userInfo))
+    //     .catch(onError);
+    // }, [accountService]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // const [courses, setCourses] = useState(profCourseItems);
+
+    // useEffect(() => {
+    //     const valueName = info.find(i => i.id == curItemId).value;
+    //     setItems();
+    // }, [curItemId]);
+
+    // useEffect(() => {
+    //     setDepartments(depItems);
+    //     setCourses(profCourseItems);
+    // }, [items])
+
+    // const [course, setCourse] = useState();
+    // const handleSelectCourse = (course) => {
+    //     setCourse(course);
+    //     // 현재 과목 카테고리
+    // }
 
 
     return (
@@ -111,18 +137,20 @@ const Profile = ({accountService, dataService}) => {
             handleSelect={handleSelectDep}
             selectedValue={department}
             />
-            <SelectBox 
+            {/* <SelectBox 
             name="course" 
             id="course-select" 
             items={courses}
             handleSelect={handleSelectCourse}
             selectedValue={course}
-            />
-            {/* <Stack gap={4}>
-                {items.map(item => (
+            /> */}
+            {
+                reviews && <Stack gap={4}>
+                {reviews.map(item => (
                     <RatingItem key={item.id} item={item} course={profCourseItems.find(i => i.id == item.courseId)}/>
                 ))}
-            </Stack> */}
+                </Stack>
+            }
         </div>
     )
 }

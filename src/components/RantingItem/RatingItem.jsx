@@ -40,9 +40,6 @@ const RatingItem = ({item, course, onDelete}) => {
 
     const {user} = useAuth();
     const[auth, setAuth] = useState(user&& user.userId == item.userId);
-    useEffect(() => {
-        console.log(auth);
-    }, [auth])
 
     
 
