@@ -42,9 +42,25 @@ export default class AccountService {
         return data;
     }
 
+    async getLikedRating(ratingId) {
+        const data =  this.http.fetch(`/account/like/${ratingId}`, {
+            method: 'GET',
+            headers: this.getHeaders(),
+        });
+        return data;
+    }
+
     async getDisLikedRatings(depId) {
         const query = depId && depId !="0"? `${depId}` : '';
         const data =  this.http.fetch(`/account/profile/dislikes/${query}`, {
+            method: 'GET',
+            headers: this.getHeaders(),
+        });
+        return data;
+    }
+
+    async getDisLikedRating(ratingId) {
+        const data =  this.http.fetch(`/account/dislike/${ratingId}`, {
             method: 'GET',
             headers: this.getHeaders(),
         });
@@ -61,7 +77,7 @@ export default class AccountService {
     }
 
     async getBookmark(profId) {
-        const data =  this.http.fetch(`/account/bookmark/${profId}`, {//또 맨앞에 /이거 안넣었어서 오류 떴네
+        const data =  this.http.fetch(`/account/bookmark/${profId}`, {
             method: 'GET',
             headers: this.getHeaders(),
         });

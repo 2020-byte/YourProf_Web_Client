@@ -195,7 +195,11 @@ const Profile = ({accountService, dataService}) => {
                 info[curItemId-1].value == 'reviews' && reviews && 
                 <Stack gap={4}>
                 {reviews.map(item => (
-                    <RatingItem key={item.id} item={item} course={profCourseItems.find(i => i.id == item.courseId)}/>
+                    <RatingItem 
+                    key={item.id} 
+                    item={item} 
+                    course={profCourseItems.find(i => i.id == item.courseId)}
+                    accountService={accountService}/>
                 ))}
                 </Stack>
             }
@@ -203,7 +207,11 @@ const Profile = ({accountService, dataService}) => {
                 info[curItemId-1].value == 'likes' && likedRatings && 
                 <Stack gap={4}>
                 {likedRatings.map(item => (
-                    <RatingItem key={item.id} item={item} course={profCourseItems.find(i => i.id == item.courseId)}/>
+                    <RatingItem 
+                    key={item.id} 
+                    item={item} 
+                    course={profCourseItems.find(i => i.id == item.courseId)}
+                    accountService={accountService}/>
                 ))}
                 </Stack>
             }
@@ -211,7 +219,11 @@ const Profile = ({accountService, dataService}) => {
                 info[curItemId-1].value == 'dislikes' && disLikedRatings && 
                 <Stack gap={4}>
                 {disLikedRatings.map(item => (
-                    <RatingItem key={item.id} item={item} course={profCourseItems.find(i => i.id == item.courseId)}/>
+                    <RatingItem 
+                    key={item.id} 
+                    item={item} 
+                    course={profCourseItems.find(i => i.id == item.courseId)}
+                    accountService={accountService}/>
                 ))}
                 </Stack>
             }

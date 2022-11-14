@@ -11,6 +11,8 @@ import useToggle from '../../hook/useToggle';
 import { useEffect } from 'react';
 import { useAuth } from '../../context/AuthContent';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import useOnError from '../../hook/useOnError';
+import { useEffectOnce } from '../../hook/useEffectOnce';
 
 
 const findRateInfo = (rate) => {
@@ -35,9 +37,10 @@ const findRateInfo = (rate) => {
 }
 
 
-const RatingItem = ({item, course, onDelete}) => {
+const RatingItem = ({item, course, onDelete, accountService}) => {
 
 
+    const [error, onError] = useOnError('');
     const {user} = useAuth();
     const[auth, setAuth] = useState(user&& user.userId == item.userId);
 
@@ -46,6 +49,8 @@ const RatingItem = ({item, course, onDelete}) => {
     const qualityColor = chooseQualityColor(item.quality);
 
     const [thumbsUp, setThumbsUp, setThumbsUpStatus] = useToggle(false);
+    //setThumbsUp은 현재 상태에서 반대로 바꿔주는 거고
+    //setThumbsUpStatus는 상태를 구체적으로 정해줄 수 있는 거고
 
     const [thumbsDown, setThumbsDown, setThumbsDownStatus] = useToggle(false);
 
@@ -56,6 +61,38 @@ const RatingItem = ({item, course, onDelete}) => {
     useEffect(() => {
         thumbsDown && setThumbsUpStatus(false)
     }, [thumbsDown])
+
+
+    const handleThumbsUp = () => {
+        setThumbsUp();
+    }
+
+    const handleThumbsDown = () => {
+        setThumbsDown();
+    }
+
+    useEffectOnce( ()=> {
+        accountService
+        .getLikedRating(item.id)
+        .then(i => {
+            if(i && !thumbsUp) {
+                setThumbsUpStatus(true);
+                setThumbsDownStatus(false);
+            }
+        })
+        .catch(onError);
+
+        accountService
+        .getDisLikedRating(item.id)
+        .then(i => {
+            if(i && !thumbsDown) {
+                setThumbsDownStatus(true);
+                setThumbsUpStatus(false);
+            }
+        })
+        .catch(onError);
+    }, [accountService]);
+
 
     const [report, setReport] = useToggle(false);
 
@@ -121,7 +158,7 @@ const RatingItem = ({item, course, onDelete}) => {
                         </div>
                         <div className={styles.voteContainer}>
                             <div className={styles.voteBox}>
-                                <span onClick={() => user && setThumbsUp()}>
+                                <span onClick={() => user && handleThumbsUp()}>
                                     {
                                         user && thumbsUp? <HiThumbUp style={{color: '#F93E69'}}/>
                                         : <FiThumbsUp />
@@ -130,7 +167,7 @@ const RatingItem = ({item, course, onDelete}) => {
                                 <span className={styles.voteNum}>{item.likes}</span>
                             </div>
                             <div style={{paddingRight: '6%'}}>
-                                <span onClick={() => user && setThumbsDown()}>
+                                <span onClick={() => user && handleThumbsDown()}>
                                     {
                                         user && thumbsDown? <HiThumbDown style={{color: '#F93E69'}}/>
                                         : <FiThumbsDown />

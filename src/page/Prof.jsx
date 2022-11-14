@@ -131,6 +131,7 @@ const Prof = ({dataService, accountService}) => {
                     item={item} 
                     course={courses.find(i => i.id == item.courseId)}
                     onDelete={onDelete}
+                    accountService={accountService}
                     />
                 ))}
             </Stack>
