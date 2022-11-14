@@ -7,10 +7,14 @@ import styles from './InfoBox.module.css';
 import chooseQualityColor from '../../hook/qualityColor';
 import useToggle from '../../hook/useToggle';
 import { useAuth } from '../../context/AuthContent';
+import useOnError from '../../hook/useOnError';
+import { useEffectOnce } from '../../hook/useEffectOnce';
 
-const InfoBox = ({item}) => {
+const InfoBox = ({item, accountService}) => {
 
+    const [error, onError] = useOnError('');
     const { user } = useAuth();
+    
 
     //TODO: customHook처리하기
     const qualityColor = chooseQualityColor(item.quality);
@@ -26,6 +30,32 @@ const InfoBox = ({item}) => {
     }
 
     const [visible, toggleVisibility] = useToggle(false);
+    useEffectOnce( ()=> {
+        accountService
+        .getBookmark(item.id)
+        .then(i => {
+            if(i && !visible) {
+                console.log(i);
+                toggleVisibility();
+            }
+        })
+        .catch(onError);
+    }, [accountService]);
+    
+
+
+    const handleBookmark = () => {
+
+        !visible?
+        accountService
+        .postBookmark(item.id)
+        .catch(onError)
+        :accountService
+        .deleteBookmark(item.id)
+        .catch(onError);
+
+        toggleVisibility();
+    }
 
     return (
         <div>
@@ -45,7 +75,7 @@ const InfoBox = ({item}) => {
                         {
                             user &&
                             <div className={styles.bookmark}>
-                                <div onClick={() => toggleVisibility()}  >
+                                <div onClick={handleBookmark}  >
                                     {
                                         visible? <FaBookmark style={{color: '#F93E69'}}/>
                                         :<FaRegBookmark/>

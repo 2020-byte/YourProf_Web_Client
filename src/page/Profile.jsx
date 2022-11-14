@@ -19,9 +19,9 @@ const Profile = ({accountService, dataService}) => {
     
     const navigate = useNavigate();
     const auth = useAuth().user;
-    useEffect(() => {
-        !auth && navigate('/');
-    }, [auth, navigate])
+    // useEffect(() => {
+    //     !auth && navigate('/');
+    // }, [auth, navigate])
 
 
     
@@ -110,16 +110,16 @@ const Profile = ({accountService, dataService}) => {
     
     useEffect(() => {
         //TODO:카테고리 따른 거 일 땐 업데이트 안되게.
-        dataService
+        accountService
         .getUserInfo()
         .then((userInfo) => setUserInfo(userInfo))
         .catch(onError);
 
-        dataService
+        accountService
         .getUserRatings(department)
         .then((i) => setReviews(i))
         .catch(onError);
-    }, [dataService, department]);
+    }, [accountService, department]);
     // useEffect(() => {
     //     accountService
     //     .getUserInfo()
@@ -128,18 +128,18 @@ const Profile = ({accountService, dataService}) => {
     // }, [accountService]);
 
     useEffect(() => {
-        dataService
+        accountService
         .getLikedRatings(department)
         .then((i) => setLikedRatings(i))
         .catch(onError);
-    }, [dataService, department]);
+    }, [accountService, department]);
 
     useEffect(() => {
-        dataService
+        accountService
         .getDisLikedRatings(department)
         .then((i) => setDisLikedRatings(i))
         .catch(onError);
-    }, [dataService, department]);
+    }, [accountService, department]);
 
 
 

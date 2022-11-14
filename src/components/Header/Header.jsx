@@ -78,7 +78,7 @@ const Header = ({handleLogout, handleSignin, user}) => {
                         user &&
                         <Dropdown title="Account" id="ScrollingDropdown" align="end">
                         <Dropdown.Item id="profile" onClick={handleClick}>My Profile</Dropdown.Item>
-                        <Dropdown.Item id="bookmark" onClick={handleClick}>Bookmark</Dropdown.Item>
+                        <Dropdown.Item id="bookmarks" onClick={handleClick}>Bookmark</Dropdown.Item>
                         <Dropdown.Divider />
                         <Dropdown.Item id="logOut" onClick={handleClick}>Sign Out</Dropdown.Item>
                         </Dropdown>

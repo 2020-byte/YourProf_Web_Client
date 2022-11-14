@@ -16,7 +16,7 @@ import useOnError from '../hook/useOnError';
 //     return items.filter(i => i.profId == Id);
 // }
 
-const Prof = ({dataService}) => {
+const Prof = ({dataService, accountService}) => {
 
     const navigate = useNavigate();
     const params = useParams();
@@ -103,7 +103,7 @@ const Prof = ({dataService}) => {
 
     return (
         <div>
-            {profInfo && <InfoBox item={profInfo} />}
+            {profInfo && <InfoBox item={profInfo} accountService={accountService} />}
             <div>
                 <SearchTab 
                 info={[

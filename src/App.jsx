@@ -49,10 +49,10 @@ function App({dataService, accountService}) {
           
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/profs" element={<AllProfs dataService={dataService}/>} />
-              <Route path="/profs/departments/:departmentId" element={<AllProfs dataService={dataService}/>} />
-              <Route path="/profs/:profId" element={<Prof dataService={dataService}/>} />
-              <Route path="/profs/:profId/courses/:courseId" element={<Prof dataService={dataService}/>} />
+              <Route path="/profs" element={<AllProfs dataService={dataService} accountService={accountService}/>} />
+              <Route path="/profs/departments/:departmentId" element={<AllProfs dataService={dataService} accountService={accountService}/>} />
+              <Route path="/profs/:profId" element={<Prof dataService={dataService} accountService={accountService}/>} />
+              <Route path="/profs/:profId/courses/:courseId" element={<Prof dataService={dataService} accountService={accountService}/>} />
               <Route path="/profs/:profId/ratings" element={<RateProf dataService={dataService}/>} />
               <Route path="/profs/:profId/ratings/:ratingId" element={<RateProf dataService={dataService}/>} />
               
@@ -63,8 +63,8 @@ function App({dataService, accountService}) {
               <Route path="/account/profile/likes/:departmentId" element={<Profile dataService={dataService} accountService={accountService}/>} />
               <Route path="/account/profile/dislikes" element={<Profile dataService={dataService} accountService={accountService}/>} />
               <Route path="/account/profile/dislikes/:departmentId" element={<Profile dataService={dataService} accountService={accountService}/>} />
-              <Route path="/account/bookmark" element={<Bookmark dataService={dataService} accountService={accountService}/>} />
-              <Route path="/account/bookmark/:departmentId" element={<Bookmark dataService={dataService} accountService={accountService}/>} />
+              <Route path="/account/bookmarks" element={<Bookmark dataService={dataService} accountService={accountService}/>} />
+              <Route path="/account/bookmarks/:departmentId" element={<Bookmark dataService={dataService} accountService={accountService}/>} />
 
               <Route path="/login" element={<Login onLogin={handleSignin} onSignUp={handleSignup} />} />
             </Routes>

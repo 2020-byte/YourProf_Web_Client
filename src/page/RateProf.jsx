@@ -20,9 +20,9 @@ const RateProf = ({dataService}) => {
 
     const navigate = useNavigate();
     const auth = useAuth().user;
-    useEffect(() => {
-        !auth && navigate('/');
-    }, [auth, navigate])
+    // useEffect(() => {
+    //     !auth && navigate('/');
+    // }, [auth, navigate])
     
 
     

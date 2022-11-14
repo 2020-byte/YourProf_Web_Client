@@ -82,54 +82,20 @@ export default class DataService {
             Authorization: `Bearer ${token}`,
         };
     }
+    //설마 이거 account.js에서 안불러와진게 이 getHeaders때문이네
 
     // onSync(callback) {
     //     return this.socket.onSync(, callback);
     // }
 
-    async getUserInfo() {
-        const data =  this.http.fetch(`/account/profile`, {
-            method: 'GET',
-            headers: this.getHeaders(),
-        });
-        return data;
-    }
 
-    async getUserRatings(depId) {
-        //undefined을 string으로 전달안하려면 undefined 일 때, 저렇게 ''으로 보내야 함.
-        const query = depId && depId !="0"? `${depId}` : '';
-        const data =  this.http.fetch(`/account/profile/reviews/${query}`, {
-            method: 'GET',
-            headers: this.getHeaders(),
-        });
-        return data;
-    }
 
-    async getLikedRatings(depId) {
-        const query = depId && depId !="0"? `${depId}` : '';
-        const data =  this.http.fetch(`/account/profile/likes/${query}`, {
-            method: 'GET',
-            headers: this.getHeaders(),
-        });
-        return data;
-    }
 
-    async getDisLikedRatings(depId) {
-        const query = depId && depId !="0"? `${depId}` : '';
-        const data =  this.http.fetch(`/account/profile/dislikes/${query}`, {
-            method: 'GET',
-            headers: this.getHeaders(),
-        });
-        return data;
-    }
 
-    async getBookmark(depId) {
-        const query = depId && depId !="0"? `${depId}` : '';
-        const data =  this.http.fetch(`/account/bookmark/${query}`, {
-            method: 'GET',
-            headers: this.getHeaders(),
-        });
-        return data;
-    }
+
+
+
+
+    
 
 }

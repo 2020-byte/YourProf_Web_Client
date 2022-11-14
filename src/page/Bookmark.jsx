@@ -13,9 +13,9 @@ const Bookmark = ({dataService, accountService}) => {
 
     const navigate = useNavigate();
     const auth = useAuth().user;
-    useEffect(() => {
-        !auth && navigate('/');
-    }, [auth, navigate])
+    // useEffect(() => {
+    //     !auth && navigate('/');
+    // }, [auth, navigate])
     const params = useParams();
 
 
@@ -28,7 +28,7 @@ const Bookmark = ({dataService, accountService}) => {
     const [bookmark, setBookmark] = useState();
 
     const handleSelect = (dep) => {
-        navigate(`/account/bookmark/${dep}`);
+        navigate(`/account/bookmarks/${dep}`);
         //setDepartment(dep);
         //여기서 set하면 밑에 useEFfect땜에 두번됨.
     }
@@ -38,11 +38,11 @@ const Bookmark = ({dataService, accountService}) => {
     }, [params]);
 
     useEffect(() => {
-        dataService
-        .getBookmark(department)
+        accountService
+        .getBookmarks(department)
         .then((i) => setBookmark(i))
         .catch(onError);
-    }, [dataService, department]);
+    }, [accountService, department]);
 
     
 
@@ -61,7 +61,7 @@ const Bookmark = ({dataService, accountService}) => {
             {
                 bookmark &&
                 <Stack gap={4}>
-                    {bookmark.map(i => (<Item key={i.id} item={i} />))}
+                    {bookmark.map(i => (<Item key={i.id} item={i} accountService={accountService}/>))}
                 </Stack>
             }
         </div>

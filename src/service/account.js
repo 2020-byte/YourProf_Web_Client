@@ -11,6 +11,76 @@ export default class AccountService {
             headers: this.getHeaders(),
         });
         return data;
-    }//TODO: 오류 알아보기
+    }//TODO: 오류 알아보기(해결됨)
+    //getHeaders가 data.js에서만 있었음
+    //여기서 새로만들던가 거기서 가져오던가 해야했음
+
+
+    getHeaders() {
+        const token = this.tokenStorage.getToken();
+        return {
+            Authorization: `Bearer ${token}`,
+        };
+    }
+
+    async getUserRatings(depId) {
+        //undefined을 string으로 전달안하려면 undefined 일 때, 저렇게 ''으로 보내야 함.
+        const query = depId && depId !="0"? `${depId}` : '';
+        const data =  this.http.fetch(`/account/profile/reviews/${query}`, {
+            method: 'GET',
+            headers: this.getHeaders(),
+        });
+        return data;
+    }
+
+    async getLikedRatings(depId) {
+        const query = depId && depId !="0"? `${depId}` : '';
+        const data =  this.http.fetch(`/account/profile/likes/${query}`, {
+            method: 'GET',
+            headers: this.getHeaders(),
+        });
+        return data;
+    }
+
+    async getDisLikedRatings(depId) {
+        const query = depId && depId !="0"? `${depId}` : '';
+        const data =  this.http.fetch(`/account/profile/dislikes/${query}`, {
+            method: 'GET',
+            headers: this.getHeaders(),
+        });
+        return data;
+    }
+
+    async getBookmarks(depId) {
+        const query = depId && depId !="0"? `${depId}` : '';
+        const data =  this.http.fetch(`/account/bookmarks/${query}`, {//또 맨앞에 /이거 안넣었어서 오류 떴네
+            method: 'GET',
+            headers: this.getHeaders(),
+        });
+        return data;
+    }
+
+    async getBookmark(profId) {
+        const data =  this.http.fetch(`/account/bookmark/${profId}`, {//또 맨앞에 /이거 안넣었어서 오류 떴네
+            method: 'GET',
+            headers: this.getHeaders(),
+        });
+        return data;
+    }
+
+    async postBookmark(profId) {
+        const data =  this.http.fetch(`/account/bookmark/${profId}`, {
+            method: 'POST',
+            headers: this.getHeaders(),
+        });
+        return data;
+    }
+
+    async deleteBookmark(profId) {
+        return this.http.fetch(`/account/bookmark/${profId}`, {
+            method: 'DELETE',
+            headers: this.getHeaders(),
+        });
+    }
 
 }
