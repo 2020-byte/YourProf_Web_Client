@@ -1,4 +1,4 @@
-import {Routes, Route, useNavigate, Router} from 'react-router-dom';
+import {Routes, Route, useNavigate, Router, useLocation} from 'react-router-dom';
 import Home from './page/Home';
 import AllProfs from './page/AllProfs';
 import Prof from './page/Prof';
@@ -14,6 +14,7 @@ import { useEffect } from 'react';
 function App({dataService, accountService}) {
 
   const navigate = useNavigate();
+  const location = useLocation();
 
 
   const { user, logout, signup, signin } = useAuth();
@@ -21,8 +22,16 @@ function App({dataService, accountService}) {
   const handleLogout = () => {
     if (window.confirm('Do you want to log out?')) {
       logout();
+      if(
+        location.pathname.includes("ratings") ||
+        location.pathname.includes("account")
+      ) {
+        navigate('/');
+      }
       //navigate('/');
       //TODO: 로그인 없이 있을 수 없는 곳 ME로 빠져나오게
+      //Me로 하니까 새로고침해도 나가지더라고
+      //그래서 그냥 저렇게 일단 해놨음.
     }
   };
 
