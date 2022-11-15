@@ -50,6 +50,21 @@ export default class AccountService {
         return data;
     }
 
+    async postLike(ratingId) {
+        const data =  this.http.fetch(`/account/like/${ratingId}`, {
+            method: 'POST',
+            headers: this.getHeaders(),
+        });
+        return data;
+    }
+
+    async deleteLike(ratingId) {
+        return this.http.fetch(`/account/like/${ratingId}`, {
+            method: 'DELETE',
+            headers: this.getHeaders(),
+        });
+    }
+
     async getDisLikedRatings(depId) {
         const query = depId && depId !="0"? `${depId}` : '';
         const data =  this.http.fetch(`/account/profile/dislikes/${query}`, {
@@ -65,6 +80,21 @@ export default class AccountService {
             headers: this.getHeaders(),
         });
         return data;
+    }
+
+    async postDisLike(ratingId) {
+        const data =  this.http.fetch(`/account/dislike/${ratingId}`, {
+            method: 'POST',
+            headers: this.getHeaders(),
+        });
+        return data;
+    }
+
+    async deleteDisLike(ratingId) {
+        return this.http.fetch(`/account/dislike/${ratingId}`, {
+            method: 'DELETE',
+            headers: this.getHeaders(),
+        });
     }
 
     async getBookmarks(depId) {

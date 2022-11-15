@@ -55,20 +55,50 @@ const RatingItem = ({item, course, onDelete, accountService}) => {
     const [thumbsDown, setThumbsDown, setThumbsDownStatus] = useToggle(false);
 
     useEffect(() => {
-        thumbsUp && setThumbsDownStatus(false)
+        thumbsUp && 
+        accountService
+        .deleteDisLike(item.id)
+        .then(setThumbsDownStatus(false))
+        .catch(onError);
+
     }, [thumbsUp])
 
     useEffect(() => {
-        thumbsDown && setThumbsUpStatus(false)
+        thumbsDown &&
+        accountService
+        .deleteLike(item.id)
+        .then(setThumbsUpStatus(false))
+        .catch(onError);
     }, [thumbsDown])
 
 
+    //TODO: 바뀌는 도중에는 선택안되도록 해야 하네
     const handleThumbsUp = () => {
-        setThumbsUp();
+        
+        thumbsUp?
+        accountService
+        .deleteLike(item.id)
+        .then(setThumbsUpStatus(false))
+        .catch(onError)
+        :
+        accountService
+        .postLike(item.id)
+        .then(setThumbsUpStatus(true))
+        .catch(onError);
+        
     }
 
     const handleThumbsDown = () => {
-        setThumbsDown();
+        thumbsDown?
+        accountService
+        .deleteDisLike(item.id)
+        .then(setThumbsDownStatus(false))
+        .catch(onError)
+        :
+        accountService
+        .postDisLike(item.id)
+        .then(setThumbsDownStatus(true))
+        .catch(onError);
     }
 
     useEffectOnce( ()=> {

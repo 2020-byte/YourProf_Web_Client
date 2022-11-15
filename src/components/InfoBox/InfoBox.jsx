@@ -35,7 +35,6 @@ const InfoBox = ({item, accountService}) => {
         .getBookmark(item.id)
         .then(i => {
             if(i && !visible) {
-                console.log(i);
                 toggleVisibility();
             }
         })
