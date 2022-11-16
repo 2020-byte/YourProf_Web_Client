@@ -87,7 +87,7 @@ const QuestionBox = ({question, handleClick, checkSelected, select, allDone, rat
                 {
                     question.type === 'rate' &&
                     <div>
-                        <RateBox handleSelect={handleSelect} initialValue={selected}/>
+                        <RateBox question={question} handleSelect={handleSelect} initialValue={selected}/>
                     </div>
                 }
                 {
