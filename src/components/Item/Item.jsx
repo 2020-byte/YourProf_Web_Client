@@ -14,7 +14,7 @@ import { useEffectOnce } from '../../hook/useEffectOnce';
 
 
 
-const Item = ({item, accountService}) => {
+const Item = ({item, accountService, dataService}) => {
 
     const [error, onError] = useOnError('');
     const qualityColor = chooseQualityColor(item.quality);
@@ -32,6 +32,9 @@ const Item = ({item, accountService}) => {
         //Prof.jsx에서 profInfo 존재할 때만 InfoBox를 받아오기로 하니까
         //window.scrollTo({ top: 0, behavior: "smooth" });
         navigate(`/profs/${item.id}`)
+        dataService
+        .postView(item.id)
+        .catch(onError);
         
     }
 

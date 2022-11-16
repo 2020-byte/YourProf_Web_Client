@@ -159,7 +159,7 @@ const RateProf = ({dataService}) => {
         .then()
         .catch(onError);
 
-        navigate(-1);
+        navigate(`/profs/${profId}`);
         
     }
 

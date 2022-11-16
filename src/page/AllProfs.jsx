@@ -115,7 +115,9 @@ const AllProfs = ({dataService, accountService}) => {
             {
                 filteredItems &&
                 <Stack gap={4}>
-                    {filteredItems.map(i => (<Item key={i.id} item={i} accountService={accountService}/>))}
+                    {filteredItems.map(i => (<Item key={i.id} item={i} 
+                    dataService={dataService}
+                    accountService={accountService}/>))}
                 </Stack>
             }
         </>

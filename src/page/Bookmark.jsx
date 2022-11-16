@@ -61,7 +61,9 @@ const Bookmark = ({dataService, accountService}) => {
             {
                 bookmark &&
                 <Stack gap={4}>
-                    {bookmark.map(i => (<Item key={i.id} item={i} accountService={accountService}/>))}
+                    {bookmark.map(i => (<Item key={i.id} item={i} 
+                    dataService={dataService}
+                    accountService={accountService}/>))}
                 </Stack>
             }
         </div>

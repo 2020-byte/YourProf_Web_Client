@@ -89,6 +89,14 @@ export default class DataService {
     // }
 
 
+    async postView(profId) {
+        return this.http.fetch(`/profs/${profId}`, {
+            method: 'POST',
+            headers: this.getHeaders(),
+        });
+    }
+
+
 
 
 

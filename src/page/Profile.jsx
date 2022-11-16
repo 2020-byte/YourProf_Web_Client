@@ -132,14 +132,14 @@ const Profile = ({accountService, dataService}) => {
         .getLikedRatings(department)
         .then((i) => setLikedRatings(i))
         .catch(onError);
-    }, [accountService, department]);
+    }, [accountService, department, curItemId]);
 
     useEffect(() => {
         accountService
         .getDisLikedRatings(department)
         .then((i) => setDisLikedRatings(i))
         .catch(onError);
-    }, [accountService, department]);
+    }, [accountService, department, curItemId]);
 
 
 
